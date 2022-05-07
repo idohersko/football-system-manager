@@ -46,4 +46,16 @@ public class SystemController {
         //todo implement & update DB
     }
 
+    //todo dar was need
+    public ArrayList<Guest> getGuests() {
+        return guests;
+    }
+
+    public ArrayList<AUser> getUsers() {
+        return users;
+    }
+
+    public ArrayList<Game> getGames() {
+        return games;
+    }
 }
