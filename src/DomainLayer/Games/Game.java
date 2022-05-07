@@ -10,7 +10,7 @@ public class Game {
     public Team team_1;
     public Team team_2;
 
-    public ArrayList<Referee> referees = new ArrayList<>(5); // todo - max = 5
+    public ArrayList<Referee> referees = new ArrayList<>(5); // todo - size = 5
 
     public Game(Season season, Team team_1, Team team_2, ArrayList<Referee> referees) {
         this.season = season;

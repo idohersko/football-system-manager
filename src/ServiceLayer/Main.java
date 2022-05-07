@@ -3,9 +3,11 @@ package ServiceLayer;
 // todo: At least one system admin - must be a user (passed the registration process).
 // todo : ask maxim on the main loop  , and if it's ok to start with some objects in the system
 
-//todo - add guest handler
+// todo - start with some employs in the system DB - can't sign in from this main
 
 //todo test all cases! include wrong input parameters
+
+// todo - compare to task 2 - write all differences
 
 import DomainLayer.Enums;
 
@@ -37,22 +39,19 @@ public class Main {
                     SignInGuestAsFan(sc);
                     break;
                 case 2:
-                    logIn(sc);
+                    LogIn(sc);
                     break;
                 case 3:
                     logOut(sc);
                     break;
                 case 4:
-                    LogInGuestAsEmployee(sc);
-                    break;
-                case 5:
                     SignNewReferee(sc);
                     break;
-                case 6:
+                case 5:
                     AddNewGame(sc);
                     break;
                 default:
-                    System.out.println("Please enter a valid number (between 0-6), by the followed menu");
+                    System.out.println("Please enter a valid number (between 0-5), by the followed menu");
             }
             System.out.println("\nWhat would you like to do next ?\n");
             printMenu();
@@ -72,22 +71,7 @@ public class Main {
         ResponseToActionStatus(status);
     }
 
-    private static void logIn(Scanner sc) {
-        System.out.println("Please enter User-Name: ");
-        String userName = sc.nextLine();
-        System.out.println("Please enter User-Password: ");
-        String userPassword = sc.nextLine();
-        Enums.UserType userType = chooseUserTypeOptions(sc);
-        if(userType == null)
-        {
-            System.out.println("Invalid choice, restart Log-In process..");
-        }
-        Enums.ActionStatus status = SystemController.getInstance().LogIn(userName, userPassword, userType);
-        ResponseToActionStatus(status);
-    }
-
-
-    private static void LogInGuestAsEmployee(Scanner sc) {
+    private static void LogIn(Scanner sc) {
         System.out.println("Please enter User-Name: ");
         String userName = sc.nextLine();
         System.out.println("Please enter User-Password: ");
@@ -151,11 +135,10 @@ public class Main {
     private static void printMenu() {
         System.out.println("Please select your desired action: ");
         System.out.println("1. Sign in as dear Fan");
-        System.out.println("2. Log in as a Fan");
-        System.out.println("3. Log in as an employee");
-        System.out.println("4. Log out");
-        System.out.println("5. Registration of a new referee");
-        System.out.println("6. Add new game");
+        System.out.println("2. Log in");
+        System.out.println("3. Log out");
+        System.out.println("4. Registration of a new referee");
+        System.out.println("5. Add new game");
         System.out.println("0. Close system");
     }
 
@@ -179,8 +162,6 @@ public class Main {
             return null;
         }
         return StringToUserType(choice);
-
-
     }
 
     private static Enums.UserType StringToUserType(int userType) {

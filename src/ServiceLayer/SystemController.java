@@ -34,14 +34,14 @@ public class SystemController {
 
     public Enums.ActionStatus AddNewGame()
     {
-        //todo implement & update DB
+        //todo implement & update DB - different controller
         return Enums.ActionStatus.SUCCESS;
 
     }
 
     public Enums.ActionStatus SignNewReferee()
     {
-        //todo implement & update DB
+        //todo implement & update DB - different controller
         return Enums.ActionStatus.SUCCESS;
 
     }

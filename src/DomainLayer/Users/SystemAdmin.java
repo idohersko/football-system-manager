@@ -10,24 +10,4 @@ public class SystemAdmin extends AUser {
         // not implemented
     }
 
-/*    public void AddLeague()
-    {
-    }
-
-    public void AddSeason(League league)
-    {
-    }
-
-    public void AddCoach(String coachName)
-    {
-    }
-
-    public void AssignCoach(Season season, Coach coach)
-    {
-    }
-
-    public void SetGame()
-    {
-    }*/
-
 }
