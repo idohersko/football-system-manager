@@ -1,4 +1,4 @@
-package com.company;
+package ServiceLayer;
 
 public class Main {
 
