@@ -21,13 +21,15 @@ public class UserController {
         //todo add check if this userName already exist - only one user per user name!
         // if yes - return error , if no - sign in & update DB with new user
 
+        // todo - sign in with stats = INACTIVE!
+
         return Enums.ActionStatus.SUCCESS;
     }
 
     public Enums.ActionStatus LogInUser(String userName, String password, Enums.UserType userType)
     {
         //todo add check if this userName exist - only signed user can log in!
-        // if no - return error, if yes - log in & update DB with new status
+        // if no - return error, if yes - log in & update DB with new status = ACTIVE
 
         return Enums.ActionStatus.SUCCESS;
     }

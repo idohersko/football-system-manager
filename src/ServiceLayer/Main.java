@@ -1,14 +1,16 @@
 package ServiceLayer;
 
-// todo: At least one system admin - must be a user (passed the registration process).
-// todo : ask maxim on the main loop  , and if it's ok to start with some objects in the system
+// todo : ask maxim on the main loop  , and if it's ok to start with some objects in the system, and if we need to implement only the 3 UC or all functions?
+// todo: like - reports, complaints, log, sign in for all users, remove users, see their details?..
 
-// todo - start with some employs in the system DB - can't sign in from this main
-// todo - weite that we didn't hanlde sign in UC, only log in and sign in for FAN type (guests only)
+// todo: At least one system admin - must be a user (passed the registration process).
+
+// todo - start with some employs, teams (and what needed for the 3 UC) in the system DB - can't sign in from this main
+// todo - write that we didn't handle sign in UC, only log in and sign in for FAN type (guests only)
 
 //todo test all cases! include wrong input parameters
 
-// todo - compare to task 2 - write all differences
+// todo - compare to task 2 - write all differences at the end
 
 import DomainLayer.Enums;
 
@@ -68,7 +70,7 @@ public class Main {
         String userName = sc.nextLine();
         System.out.println("Please choose User-Password: ");
         String userPassword = sc.nextLine();
-        Enums.ActionStatus status = SystemController.getInstance().SignInGuest(userName, userPassword, Enums.UserType.Fan);
+        Enums.ActionStatus status = SystemController.getInstance().SignInGuest(userName, userPassword);
         ResponseToActionStatus(status);
     }
 
