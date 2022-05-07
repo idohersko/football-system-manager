@@ -30,4 +30,14 @@ public class Enums {
         Injury,
         Substitution
     }
+
+    public enum ScoreAndPositionPolicy {
+        Policy_1,
+        Policy_2
+    }
+
+    public enum ScheduleGamesPolicy {
+        Policy_1,
+        Policy_2
+    }
 }

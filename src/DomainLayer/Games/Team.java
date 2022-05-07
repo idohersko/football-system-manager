@@ -5,9 +5,6 @@ import DomainLayer.Users.TeamOwner;
 import java.util.ArrayList;
 
 public class Team {
-    public int incomes;
-    public int expenses;
-
     public TeamOwner teamOwner;
     public League league;
     public ArrayList<Game> games = new ArrayList<>();

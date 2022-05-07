@@ -4,7 +4,7 @@ import DomainLayer.Enums;
 import DomainLayer.Controllers.UserController;
 
 public class SystemController {
-    private static SystemController systemControllerInstance; // singletone
+    private static SystemController systemControllerInstance;
 
     private SystemController() {
     }
@@ -16,7 +16,7 @@ public class SystemController {
         return systemControllerInstance;
     }
 
-    public Enums.ActionStatus SignIn(String userName, String password, Enums.UserType userType)
+    public Enums.ActionStatus SignInGuest(String userName, String password, Enums.UserType userType)
     {
         return UserController.getInstance().SignInNewUser(userName, password, userType);
 

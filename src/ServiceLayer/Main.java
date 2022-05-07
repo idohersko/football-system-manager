@@ -1,9 +1,11 @@
 package ServiceLayer;
 
 // todo: At least one system admin - must be a user (passed the registration process).
-// todo : ask maxim on the main loop
+// todo : ask maxim on the main loop  , and if it's ok to start with some objects in the system
 
-//todo - add guest handle
+//todo - add guest handler
+
+//todo test all cases! include wrong input parameters
 
 import DomainLayer.Enums;
 
@@ -12,7 +14,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        //todo : At this point make sure there is at least one signed-in system admin (undergone a registration process).
+
         SystemController systemController = SystemController.getInstance();
+
+        System.out.println("Hi guest! welcome to out Football System");
 
         Scanner sc = new Scanner(System.in);
         printMenu();
@@ -28,7 +34,7 @@ public class Main {
         while (choice != 0) {
             switch (choice) {
                 case 1:
-                    SignIn(sc);
+                    SignInGuestAsFan(sc);
                     break;
                 case 2:
                     logIn(sc);
@@ -37,13 +43,16 @@ public class Main {
                     logOut(sc);
                     break;
                 case 4:
-                    SignNewReferee(sc);
+                    LogInGuestAsEmployee(sc);
                     break;
                 case 5:
+                    SignNewReferee(sc);
+                    break;
+                case 6:
                     AddNewGame(sc);
                     break;
                 default:
-                    System.out.println("Please enter a valid number (between 0-5), by the followed menu");
+                    System.out.println("Please enter a valid number (between 0-6), by the followed menu");
             }
             System.out.println("\nWhat would you like to do next ?\n");
             printMenu();
@@ -54,17 +63,12 @@ public class Main {
         System.out.println("Goodbye! See you soon..");
     }
 
-    private static void SignIn(Scanner sc) {
+    private static void SignInGuestAsFan(Scanner sc) {
         System.out.println("Please choose User-Name: ");
         String userName = sc.nextLine();
         System.out.println("Please choose User-Password: ");
         String userPassword = sc.nextLine();
-        Enums.UserType userType = chooseUserTypeOptions(sc);
-        if(userType == null)
-        {
-            System.out.println("Invalid choice, restart Sign-In process..");
-        }
-        Enums.ActionStatus status = SystemController.getInstance().SignIn(userName, userPassword, userType);
+        Enums.ActionStatus status = SystemController.getInstance().SignInGuest(userName, userPassword, Enums.UserType.Fan);
         ResponseToActionStatus(status);
     }
 
@@ -76,7 +80,22 @@ public class Main {
         Enums.UserType userType = chooseUserTypeOptions(sc);
         if(userType == null)
         {
-            System.out.println("Invalid choice, restart Sign-In process..");
+            System.out.println("Invalid choice, restart Log-In process..");
+        }
+        Enums.ActionStatus status = SystemController.getInstance().LogIn(userName, userPassword, userType);
+        ResponseToActionStatus(status);
+    }
+
+
+    private static void LogInGuestAsEmployee(Scanner sc) {
+        System.out.println("Please enter User-Name: ");
+        String userName = sc.nextLine();
+        System.out.println("Please enter User-Password: ");
+        String userPassword = sc.nextLine();
+        Enums.UserType userType = chooseUserTypeOptions(sc);
+        if(userType == null)
+        {
+            System.out.println("Invalid choice, restart Log-In process..");
         }
         Enums.ActionStatus status = SystemController.getInstance().LogIn(userName, userPassword, userType);
         ResponseToActionStatus(status);
@@ -131,11 +150,12 @@ public class Main {
 
     private static void printMenu() {
         System.out.println("Please select your desired action: ");
-        System.out.println("1. SignIn");
-        System.out.println("2. Login");
-        System.out.println("3. Logout");
-        System.out.println("4. Registration of a new referee");
-        System.out.println("5. Add new game");
+        System.out.println("1. Sign in as dear Fan");
+        System.out.println("2. Log in as a Fan");
+        System.out.println("3. Log in as an employee");
+        System.out.println("4. Log out");
+        System.out.println("5. Registration of a new referee");
+        System.out.println("6. Add new game");
         System.out.println("0. Close system");
     }
 
