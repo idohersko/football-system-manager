@@ -4,6 +4,7 @@ package ServiceLayer;
 // todo : ask maxim on the main loop  , and if it's ok to start with some objects in the system
 
 // todo - start with some employs in the system DB - can't sign in from this main
+// todo - weite that we didn't hanlde sign in UC, only log in and sign in for FAN type (guests only)
 
 //todo test all cases! include wrong input parameters
 
@@ -134,9 +135,9 @@ public class Main {
 
     private static void printMenu() {
         System.out.println("Please select your desired action: ");
-        System.out.println("1. Sign in as dear Fan");
-        System.out.println("2. Log in");
-        System.out.println("3. Log out");
+        System.out.println("1. Sign in as one of our dear Fans");
+        System.out.println("2. Log in to the system");
+        System.out.println("3. Log out from the system");
         System.out.println("4. Registration of a new referee");
         System.out.println("5. Add new game");
         System.out.println("0. Close system");
