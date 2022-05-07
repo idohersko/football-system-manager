@@ -1,22 +1,12 @@
 package ServiceLayer;
 
-// singletone
-
-import DomainLayer.Games.Game;
-import DomainLayer.Users.AUser;
-import DomainLayer.Users.Guest;
-
-import java.util.ArrayList;
+import DomainLayer.Enums;
+import DomainLayer.Controllers.UserController;
 
 public class SystemController {
     private static SystemController systemControllerInstance; // singletone
 
-    private ArrayList<Guest> guests = new ArrayList<>();
-    private ArrayList<AUser> users = new ArrayList<>();
-    private ArrayList<Game> games = new ArrayList<>();
-
     private SystemController() {
-        // todo add read from DB and fill arrays
     }
 
     public static SystemController getInstance() {
@@ -26,24 +16,34 @@ public class SystemController {
         return systemControllerInstance;
     }
 
-    public static void LogIn(String userName, String password, String userType)
+    public Enums.ActionStatus SignIn(String userName, String password, Enums.UserType userType)
     {
-        //todo implement & update DB
+        return UserController.getInstance().SignInNewUser(userName, password, userType);
+
     }
 
-    public static void LogOut(String userName)
+    public Enums.ActionStatus LogIn(String userName, String password, Enums.UserType userType)
     {
-        //todo implement & update DB
+        return UserController.getInstance().LogInUser(userName, password, userType);
     }
 
-    public static void AddNewGame()
+    public Enums.ActionStatus LogOut(String userName)
     {
-        //todo implement & update DB
+        return UserController.getInstance().LogOutUser(userName);
     }
 
-    public static void SignNewReferee()
+    public Enums.ActionStatus AddNewGame()
     {
         //todo implement & update DB
+        return Enums.ActionStatus.SUCCESS;
+
+    }
+
+    public Enums.ActionStatus SignNewReferee()
+    {
+        //todo implement & update DB
+        return Enums.ActionStatus.SUCCESS;
+
     }
 
 }

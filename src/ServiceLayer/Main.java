@@ -3,7 +3,9 @@ package ServiceLayer;
 // todo: At least one system admin - must be a user (passed the registration process).
 // todo : ask maxim on the main loop
 
-import DomainLayer.Users.AUser;
+//todo - add guest handle
+
+import DomainLayer.Enums;
 
 import java.util.Scanner;
 
@@ -48,43 +50,55 @@ public class Main {
             choiceStr = sc.nextLine();
             if (isNumber(choiceStr)) {
                 choice = checkIfInt(choiceStr,"Please enter a valid option : ");
-            }
-        }
+            }}
         System.out.println("Goodbye! See you soon..");
     }
 
     private static void SignIn(Scanner sc) {
-        //todo add check if this userName already exist - only one user per user name!
-
-        //todo implement
+        System.out.println("Please choose User-Name: ");
+        String userName = sc.nextLine();
+        System.out.println("Please choose User-Password: ");
+        String userPassword = sc.nextLine();
+        Enums.UserType userType = chooseUserTypeOptions(sc);
+        if(userType == null)
+        {
+            System.out.println("Invalid choice, restart Sign-In process..");
+        }
+        Enums.ActionStatus status = SystemController.getInstance().SignIn(userName, userPassword, userType);
+        ResponseToActionStatus(status);
     }
 
     private static void logIn(Scanner sc) {
-        //todo add check if this userName exist - only signed user can log in!
         System.out.println("Please enter User-Name: ");
         String userName = sc.nextLine();
         System.out.println("Please enter User-Password: ");
         String userPassword = sc.nextLine();
-        System.out.println("Please enter User-Type: "); //todo add option to choose from
-        String userType = sc.nextLine();
-        SystemController.LogIn(userName, userPassword, userType);
+        Enums.UserType userType = chooseUserTypeOptions(sc);
+        if(userType == null)
+        {
+            System.out.println("Invalid choice, restart Sign-In process..");
+        }
+        Enums.ActionStatus status = SystemController.getInstance().LogIn(userName, userPassword, userType);
+        ResponseToActionStatus(status);
     }
 
     private static void logOut(Scanner sc) {
-        //todo add check if this userName exist and active - only active logged in user can log out!
         System.out.println("Please enter User-Name: ");
         String userName = sc.nextLine();
-        SystemController.LogOut(userName);
+        Enums.ActionStatus status = SystemController.getInstance().LogOut(userName);
+        ResponseToActionStatus(status);
     }
 
     private static void SignNewReferee(Scanner sc) {
         //todo verify user type - valid type
-        SystemController.SignNewReferee();
+        Enums.ActionStatus status = SystemController.getInstance().SignNewReferee();
+        ResponseToActionStatus(status);
     }
 
     private static void AddNewGame(Scanner sc) {
         //todo verify user type - valid type
-        SystemController.AddNewGame();
+        Enums.ActionStatus status = SystemController.getInstance().AddNewGame();
+        ResponseToActionStatus(status);
     }
 
     private static boolean isNumber(String str) {
@@ -96,7 +110,6 @@ public class Main {
     }
 
     private static int parseCheckInt(String str) {
-
         try {
             Integer.parseInt(str);
         } catch (NumberFormatException e) {
@@ -124,5 +137,54 @@ public class Main {
         System.out.println("4. Registration of a new referee");
         System.out.println("5. Add new game");
         System.out.println("0. Close system");
+    }
+
+    private static Enums.UserType chooseUserTypeOptions(Scanner sc) {
+        System.out.println("Please choose User-Type - the options are: ");
+        System.out.println("1. Coach");
+        System.out.println("2. Fan");
+        System.out.println("3. Player");
+        System.out.println("4. Referee");
+        System.out.println("5. System Admin");
+        System.out.println("6. Team Manager");
+        System.out.println("7. Team Owner");
+        String userType = sc.nextLine();
+        if(!isNumber(userType))
+        {
+            return null;
+        }
+        int choice = Integer.parseInt(userType);
+        if(choice<1 || choice>7)
+        {
+            return null;
+        }
+        return StringToUserType(choice);
+
+
+    }
+
+    private static Enums.UserType StringToUserType(int userType) {
+        return switch (userType) {
+            case 1 -> Enums.UserType.Coach;
+            case 2 -> Enums.UserType.Fan;
+            case 3 -> Enums.UserType.Player;
+            case 4 -> Enums.UserType.Referee;
+            case 5 -> Enums.UserType.SystemAdmin;
+            case 6 -> Enums.UserType.TeamManager;
+            case 7 -> Enums.UserType.TeamOwner;
+            default -> null;
+        };
+    }
+
+    private static void ResponseToActionStatus(Enums.ActionStatus actionStatus) {
+        if(actionStatus == Enums.ActionStatus.SUCCESS)
+        {
+            System.out.println("Your request completed successfully");
+        }
+        else
+        {
+            System.out.println("Operation failed, please restart");
+        }
+
     }
 }
