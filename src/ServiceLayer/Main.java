@@ -3,6 +3,8 @@ package ServiceLayer;
 // todo: At least one system admin - must be a user (passed the registration process).
 // todo : ask maxim on the main loop
 
+import DomainLayer.Users.AUser;
+
 import java.util.Scanner;
 
 public class Main {
@@ -11,13 +13,7 @@ public class Main {
         SystemController systemController = SystemController.getInstance();
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Hello, and welcome to our Football System!\n");
-        System.out.println("Please select your desired action: ");
-        System.out.println("1. Login");
-        System.out.println("2. Logout");
-        System.out.println("3. Registration of a new referee");
-        System.out.println("4. Add new game");
-        System.out.println("0. Close system");
+        printMenu();
 
         String choiceStr = sc.nextLine();
         int choice = 100;
@@ -28,36 +24,67 @@ public class Main {
             System.out.println("Please enter a number, by the followed menu");
         }
         while (choice != 0) {
-            Scanner scIn = new Scanner(System.in);
             switch (choice) {
                 case 1:
-                    SystemController.LogIn();
+                    SignIn(sc);
                     break;
                 case 2:
-                    SystemController.LogOut();
+                    logIn(sc);
                     break;
                 case 3:
-                    SystemController.SignNewReferee();
+                    logOut(sc);
                     break;
                 case 4:
-                    SystemController.AddNewGame();
+                    SignNewReferee(sc);
+                    break;
+                case 5:
+                    AddNewGame(sc);
                     break;
                 default:
-                    System.out.println("Please enter a valid number (between 0-4), by the followed menu");
+                    System.out.println("Please enter a valid number (between 0-5), by the followed menu");
             }
             System.out.println("\nWhat would you like to do next ?\n");
-            System.out.println("Please select your desired action: ");
-            System.out.println("1. Login");
-            System.out.println("2. Logout");
-            System.out.println("3. Registration of a new referee");
-            System.out.println("4. Add new game");
-            System.out.println("0. Close system");
+            printMenu();
             choiceStr = sc.nextLine();
             if (isNumber(choiceStr)) {
                 choice = checkIfInt(choiceStr,"Please enter a valid option : ");
             }
         }
         System.out.println("Goodbye! See you soon..");
+    }
+
+    private static void SignIn(Scanner sc) {
+        //todo add check if this userName already exist - only one user per user name!
+
+        //todo implement
+    }
+
+    private static void logIn(Scanner sc) {
+        //todo add check if this userName exist - only signed user can log in!
+        System.out.println("Please enter User-Name: ");
+        String userName = sc.nextLine();
+        System.out.println("Please enter User-Password: ");
+        String userPassword = sc.nextLine();
+        System.out.println("Please enter User-Type: "); //todo add option to choose from
+        String userType = sc.nextLine();
+        SystemController.LogIn(userName, userPassword, userType);
+    }
+
+    private static void logOut(Scanner sc) {
+        //todo add check if this userName exist and active - only active logged in user can log out!
+        System.out.println("Please enter User-Name: ");
+        String userName = sc.nextLine();
+        SystemController.LogOut(userName);
+    }
+
+    private static void SignNewReferee(Scanner sc) {
+        //todo verify user type - valid type
+        SystemController.SignNewReferee();
+    }
+
+    private static void AddNewGame(Scanner sc) {
+        //todo verify user type - valid type
+        SystemController.AddNewGame();
     }
 
     private static boolean isNumber(String str) {
@@ -87,5 +114,15 @@ public class Main {
             str = scIn.nextLine();
         }
         return Integer.parseInt(str);
+    }
+
+    private static void printMenu() {
+        System.out.println("Please select your desired action: ");
+        System.out.println("1. SignIn");
+        System.out.println("2. Login");
+        System.out.println("3. Logout");
+        System.out.println("4. Registration of a new referee");
+        System.out.println("5. Add new game");
+        System.out.println("0. Close system");
     }
 }
