@@ -12,6 +12,11 @@ public class Enums {
         INACTIVE
     }
 
+    public enum RefereeLevel{
+        Primary,
+        Secondary
+    }
+
     public enum UserType {
         Coach,
         Fan,

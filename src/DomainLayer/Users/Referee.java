@@ -5,14 +5,12 @@ import java.util.ArrayList;
 
 public class Referee extends AUser {
     public String training;
+    public Enums.RefereeLevel refereeLevel;
 
     public ArrayList<Season> seasons = new ArrayList<>();
     public ArrayList<Enums.EventType> events = new ArrayList<>();
 
-
-
-    public Referee(String name, String password, Enums.UserType type, Enums.ActivationStatus activationStatus, String training) {
-        super(name, password, type, activationStatus);
-        this.training = training;
+    public Referee(String name, String password) {
+        super(name, password);
     }
 }
