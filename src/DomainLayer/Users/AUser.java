@@ -22,25 +22,38 @@ public abstract class AUser {
 
     // ------------------------- DB interaction methods -------------------------
 
+    public static ArrayList<String> getAllUsersFromDB()
+    {
+        UsersDB usersDB = UsersDB.getInstance();
+        return usersDB.getAll();
+    }
+
     public static Enums.ActionStatus LogInUserToDB(String userName, String password)
     {
-        SystemAdmin temp_user = new SystemAdmin(userName, password, Enums.ActivationStatus.INACTIVE,Enums.UserType.SystemAdmin);
-        UsersDB usersDB = UsersDB.getInstance();
-        try {
-            usersDB.update(temp_user,new String[]{Enums.ActivationStatus.ACTIVE.toString()});
-        }
-        catch (Exception e)
+        if(userName== null || password == null)
         {
-            return Enums.ActionStatus.FAIL;
+            return Enums.ActionStatus.WRONG_PARAMETERS;
         }
+        ArrayList<String> all_users = getAllUsersFromDB();
 
-        // todo implement what happens if password is wrong / user doesn't exist, and if it's already logged in
-
-        // login user in DB records
-        //todo add check if this userName exist - only signed user can log in!
-        // if no - return error, if yes - log in & update DB with new status = ACTIVE
-
-        return Enums.ActionStatus.SUCCESS;
+        // check if user exists, if yes 0 verify it's password
+        for (String user: all_users) {
+            String[] user_splitted = user.split(";");
+            if(user_splitted[0]==userName && user_splitted[1]==password)
+            {
+                // write to DB - change user to active state
+                UsersDB usersDB = UsersDB.getInstance();
+                try {
+                    usersDB.update(new SystemAdmin(userName, password, Enums.ActivationStatus.INACTIVE,Enums.UserType.SystemAdmin ),new String[]{});
+                }
+                catch (Exception e)
+                {
+                    return Enums.ActionStatus.FAIL;
+                }
+                return Enums.ActionStatus.SUCCESS;
+            }
+        }
+        return Enums.ActionStatus.FAIL;
     }
 
     // ------------------------- Getters & Setters -------------------------
