@@ -35,7 +35,13 @@ public class Game {
         Game game = new Game(date, season, field, team_home, team_guest, referees);
 
         GamesDB gamesDB = GamesDB.getInstance();
-        gamesDB.save(game);
+        try {
+            gamesDB.save(game);
+        }
+        catch (Exception e)
+        {
+            return Enums.ActionStatus.FAIL;
+        }
 
         return Enums.ActionStatus.SUCCESS;
     }
