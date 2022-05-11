@@ -1,18 +1,27 @@
 package DomainLayer.Users;
 
-public abstract class AUser {
-    public static int counter = 0; //todo update from DB in each initialization
+import DomainLayer.Enums;
 
+public abstract class AUser {
     private String name;
     private String password;
-    private int ID;
-    private boolean isActive;
 
-    public void LogIN(){
-        // todo implement
+    public AUser(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 
-    public void LogOut(){
-        // todo implement
+    //private int ID; //todo - not needed - delete from task 2
+
+    // ------------------------- DB interaction methods -------------------------
+
+    public static Enums.ActionStatus LogInUserToDB(String userName, String password)
+    {
+        // login user in DB records
+        //todo add check if this userName exist - only signed user can log in!
+        // if no - return error, if yes - log in & update DB with new status = ACTIVE
+
+        return Enums.ActionStatus.SUCCESS;
     }
+
 }

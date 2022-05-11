@@ -1,22 +1,14 @@
 package ServiceLayer;
 
-// singletone
-
-import DomainLayer.Games.Game;
+import DomainLayer.Enums;
 import DomainLayer.Users.AUser;
-import DomainLayer.Users.Guest;
 
 import java.util.ArrayList;
 
 public class SystemController {
-    private static SystemController systemControllerInstance; // singletone
-
-    private ArrayList<Guest> guests = new ArrayList<>();
-    private ArrayList<AUser> users = new ArrayList<>();
-    private ArrayList<Game> games = new ArrayList<>();
+    private static SystemController systemControllerInstance;
 
     private SystemController() {
-        // todo add read from DB and fill arrays
     }
 
     public static SystemController getInstance() {
@@ -26,24 +18,48 @@ public class SystemController {
         return systemControllerInstance;
     }
 
-    public static void LogIn(String userName, String password, String userType)
-    {
-        //todo implement & update DB
+
+    public Enums.ActionStatus LogInUser(String userName, String password){
+        if(userName == null || password == null)
+        {
+            return Enums.ActionStatus.WRONG_PARAMETERS;
+        }
+        // todo implement what happens if password is wrong / user doesn't exist
+        return AUser.LogInUserToDB(userName, password);
     }
 
-    public static void LogOut(String userName)
+    public Enums.ActionStatus SetNewGame()
     {
         //todo implement & update DB
+        return Enums.ActionStatus.SUCCESS;
     }
 
-    public static void AddNewGame()
+    public Enums.ActionStatus SignNewReferee()
     {
         //todo implement & update DB
+        return Enums.ActionStatus.SUCCESS;
     }
 
-    public static void SignNewReferee()
+    public boolean VerifySystemAdmin()
     {
-        //todo implement & update DB
+        //todo implement - make sure we have at least one (true if yes, false if not)
+        // todo: test there is at least one signed-in system admin (undergone a registration process).
+        //  this admin must be a user  (passed the registration process).
+
+        return false;
+    }
+
+    private static Enums.UserType StringToUserType(int userType) {
+        return switch (userType) {
+            case 1 -> Enums.UserType.Coach;
+            case 2 -> Enums.UserType.Fan;
+            case 3 -> Enums.UserType.Player;
+            case 4 -> Enums.UserType.Referee;
+            case 5 -> Enums.UserType.SystemAdmin;
+            case 6 -> Enums.UserType.TeamManager;
+            case 7 -> Enums.UserType.TeamOwner;
+            default -> null;
+        };
     }
 
 }
