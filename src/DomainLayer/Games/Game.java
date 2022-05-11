@@ -12,7 +12,7 @@ public class Game {
     public Team team_home;
     public Team team_guest;
 
-    public ArrayList<Referee> referees = new ArrayList<>(5); // todo - size = 5
+    public ArrayList<Referee> referees = new ArrayList<>(5); // todo make sure - size = 5
 
     public Game(String date, String time, Season season, Team team_home, Team team_guest) {
         this.date = date;
