@@ -3,6 +3,7 @@ package DomainLayer.Users;
 import DomainLayer.Enums;
 import DomainLayer.Games.League;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class AssociationRepresentative extends AUser {
@@ -72,7 +73,16 @@ public class AssociationRepresentative extends AUser {
 
     public static boolean CheckRepresentativeExists(String RepresentativeName)
     {
-        // todo implement - check that the given Representative is exists
-        return true;
+        // make sure that this Representative exists (return true if 'yes', false if 'not')
+        ArrayList<String> all_users = getAllUsersFromDB();
+
+        for (String user: all_users) {
+            String[] user_splitted = user.split(";");
+            if(user_splitted[0]==RepresentativeName && user_splitted[2]==Enums.UserType.AssociationRepresentative.toString())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
