@@ -16,7 +16,7 @@ public class LoginStstemTest {
     public void testLoginHappyFlow() {
         // Login with existing userName and password - successful login
         Enums.ActionStatus status = controller.LogInUser("us-dar","dar123");
-        assertEquals("Login failed - couldn't login the user", status, Enums.ActionStatus.SUCCESS);
+        assertEquals("failed - this test should have been success", status, Enums.ActionStatus.SUCCESS);
     }
 
     @Test

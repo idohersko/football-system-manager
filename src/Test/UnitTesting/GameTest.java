@@ -21,7 +21,7 @@ public class GameTest {
         // happy flow - all parameters are OK
         Enums.ActionStatus status = controller.SetNewGame("Talya", "England", "01-01-2023",
                 "Manchester", "Liverpool", "Manchester_Stadium");
-        assertEquals(" ", status, Enums.ActionStatus.SUCCESS);
+        assertEquals("Failed - this test should have been success", status, Enums.ActionStatus.SUCCESS);
     }
 
     @Test
@@ -58,27 +58,27 @@ public class GameTest {
         // AssociationRepresentative isn't exist - should fail
         Enums.ActionStatus status = controller.SetNewGame("Dar", "England", "01-01-2023",
                 "Manchester", "Liverpool", "Manchester_Stadium");
-        assertEquals("Association Representative isn't exist", status, Enums.ActionStatus.WRONG_PARAMETERS);
+        assertEquals("should be \"WRONG_PARAMETERS\"- Association Representative isn't exist", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
         // AssociationRepresentative logged out - should fail
         status = controller.SetNewGame("Ido", "England", "01-01-2023",
                 "Manchester", "Liverpool", "Manchester_Stadium");
-        assertEquals("Association Representative must log in first", status, Enums.ActionStatus.FAIL);
+        assertEquals("should fail - Association Representative must log in first", status, Enums.ActionStatus.FAIL);
 
         // League isn't exist - should fail
         status = controller.SetNewGame("Talya", "Naama", "01-01-2023",
                 "Manchester", "Liverpool", "Manchester_Stadium");
-        assertEquals(" ", status, Enums.ActionStatus.WRONG_PARAMETERS);
+        assertEquals("should be \"WRONG_PARAMETERS\"", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
         // Team isn't exist - should fail
         status = controller.SetNewGame("Talya", "England", "01-01-2023",
                 "Maxim", "Liverpool", "Manchester_Stadium");
-        assertEquals(" ", status, Enums.ActionStatus.WRONG_PARAMETERS);
+        assertEquals("should be \"WRONG_PARAMETERS\"-", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
         // Team has other League - should fail
         status = controller.SetNewGame("Talya", "UK", "01-01-2023",
                 "Manchester", "Liverpool", "Manchester_Stadium");
-        assertEquals(" ", status, Enums.ActionStatus.WRONG_PARAMETERS);
+        assertEquals("should be \"WRONG_PARAMETERS\"-", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
     }
 }
