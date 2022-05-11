@@ -9,7 +9,6 @@ public class SystemController {
 
     private SystemController() {
     }
-
     public static SystemController getInstance() {
         if (systemControllerInstance == null){
             systemControllerInstance = new SystemController();
