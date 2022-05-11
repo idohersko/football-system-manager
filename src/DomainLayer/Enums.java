@@ -37,7 +37,7 @@ public class Enums {
     }
 
     public enum ScheduleGamesPolicy {
-        Policy_1,
-        Policy_2
+        EachPairOnceASeason,
+        EachPairOnceInEachHome
     }
 }

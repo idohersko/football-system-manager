@@ -5,9 +5,4 @@ import DomainLayer.Games.Season;
 
 public class SystemAdmin extends AUser {
 
-    public void HandleReports()
-    {
-        // not implemented
-    }
-
 }

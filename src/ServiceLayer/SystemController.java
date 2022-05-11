@@ -16,9 +16,9 @@ public class SystemController {
         return systemControllerInstance;
     }
 
-    public Enums.ActionStatus SignInGuest(String userName, String password, Enums.UserType userType)
+    public Enums.ActionStatus SignInGuest(String userName, String password)
     {
-        return UserController.getInstance().SignInNewUser(userName, password, userType);
+        return UserController.getInstance().SignInNewUser(userName, password, Enums.UserType.Fan);
 
     }
 

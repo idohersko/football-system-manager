@@ -10,19 +10,4 @@ public class TeamOwner extends AInnerTeamUser {
         super(team);
     }
 
-    public void SignNewTeam(){
-        // not implemented
-    }
-
-    public void AddPlayer(){
-        // not implemented
-    }
-
-    public void AddCoach(){
-        // todo implement
-    }
-
-    public void AddTeamManager(){
-        // not implemented
-    }
 }
