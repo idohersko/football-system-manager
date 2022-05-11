@@ -13,13 +13,14 @@ public class RefereeTest {
         controller = SystemController.getInstance();
     }
 
-    //todo check if referee in the system already - AssociationRepresentative sign-up twice
-
-
     @Test
     public void testNewRefereeRegistration(){
+        // happy flow
+        Enums.ActionStatus status = controller.SignNewReferee("NammaBaruch","naamaBru123@post.ac.il", Enums.RefereeLevel.Secondary);
+        assertEquals("Registration failed", status, Enums.ActionStatus.SUCCESS);
+
         // check that we handled the case of null parameters - wrong input
-        Enums.ActionStatus status = controller.SignNewReferee("NammaBaruch","", Enums.RefereeLevel.Primary);
+        status = controller.SignNewReferee("NaamaBaruch","", Enums.RefereeLevel.Primary);
         assertEquals("Wrong input parameters - email can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
         status = controller.SignNewReferee("","naamaBru123h@post.ac.il", Enums.RefereeLevel.Primary);
@@ -32,9 +33,6 @@ public class RefereeTest {
         // check that we handle the case of legal email, example:'@'
         status = controller.SignNewReferee("NammaBaruch","naamaBru123post.ac.il", Enums.RefereeLevel.Secondary);
         assertEquals("Wrong input parameters - illegal email without '@'", status, Enums.ActionStatus.WRONG_PARAMETERS);
-
-        status = controller.SignNewReferee("NammaBaruch","naamaBru123@post.ac.il", Enums.RefereeLevel.Secondary);
-        assertEquals("Successful registration - legal email", status, Enums.ActionStatus.SUCCESS);
 
         // Register referee that existing already in the system -  referee already registered.
         status = controller.SignNewReferee("NammaBaruch","naamaBru123@post.ac.il", Enums.RefereeLevel.Secondary);
