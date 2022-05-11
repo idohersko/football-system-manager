@@ -24,7 +24,8 @@ public class Enums {
         Referee,
         SystemAdmin,
         TeamManager,
-        TeamOwner
+        TeamOwner,
+        AssociationRepresentative
     }
 
     public enum EventType {
