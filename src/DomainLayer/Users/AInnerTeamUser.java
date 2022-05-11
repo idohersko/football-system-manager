@@ -1,7 +1,5 @@
 package DomainLayer.Users;
 
-//todo : in CD - change team user to abstract class
-
 import DomainLayer.Enums;
 import DomainLayer.Games.Team;
 

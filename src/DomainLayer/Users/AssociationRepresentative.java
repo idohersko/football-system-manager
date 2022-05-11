@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class AssociationRepresentative extends AUser {
 
-//    public League league; todo - change in task 2 - no need this connection? in UC and in CD.
     public AssociationRepresentative(String name, String password, Enums.ActivationStatus status, Enums.UserType userType) {
         super(name, password, status, userType);
     }

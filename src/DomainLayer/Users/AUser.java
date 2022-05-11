@@ -18,8 +18,6 @@ public abstract class AUser {
         this.userType = userType;
     }
 
-    //private int ID; //todo - not needed - delete from task 2
-
     // ------------------------- DB interaction methods -------------------------
 
     public static ArrayList<String> getAllUsersFromDB()
