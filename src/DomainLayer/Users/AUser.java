@@ -28,14 +28,4 @@ public abstract class AUser {
         return Enums.ActionStatus.SUCCESS;
     }
 
-    public static Enums.ActionStatus LogOutUserToDB(String userName)
-    {
-        // logout user in DB records
-
-        //todo add check if this userName exist and active - only active logged in user can log out!
-        // if no - return error, if yes - log out & update DB with new status
-
-        return Enums.ActionStatus.SUCCESS;
-    }
-
 }

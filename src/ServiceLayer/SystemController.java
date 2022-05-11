@@ -28,16 +28,6 @@ public class SystemController {
         return AUser.LogInUserToDB(userName, password);
     }
 
-    public Enums.ActionStatus LogOutUser(String userName) throws Exception {
-        if(userName == null)
-        {
-            throw new Exception("Null input parameter");
-        }
-        // todo implement what happens if  user doesn't exist
-        // todo - implemet what happens if user is already logged out
-        return AUser.LogOutUserToDB(userName);
-    }
-
     public Enums.ActionStatus SetNewGame()
     {
         //todo implement & update DB

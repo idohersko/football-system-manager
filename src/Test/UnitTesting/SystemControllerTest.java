@@ -62,46 +62,5 @@ public class SystemControllerTest {
         }
     }
 
-    @Test
-    public void testLogout(){
-        // Logout with logged-in user - successful logout
-        try {
-            controller.LogOutUser("us-dar");
-        }catch (Exception e) {
-            // todo - don't print - make sure we got an error
-
-            System.out.println(e.getMessage());
-        }
-
-        // make sure we handled the case of null parameters - wrong input
-        try {
-            controller.LogOutUser(null);
-        }catch (Exception e) {
-            // todo - don't print - make sure we got an error
-
-            System.out.println(e.getMessage());
-        }
-
-        // make sure we handled the case of user that is already logged out
-        try {
-            controller.LogOutUser("us-dar");
-        }catch (Exception e) {
-            // todo - don't print - make sure we got an error
-
-            System.out.println(e.getMessage());
-        }
-
-        // make sure we handled the case of wrong username input - user doesn't exist
-        try {
-            controller.LogOutUser("da");
-        }catch (Exception e) {
-            // todo - don't print - make sure we got an error
-
-            System.out.println(e.getMessage());
-        }
-    }
-
-
-
 
 }
