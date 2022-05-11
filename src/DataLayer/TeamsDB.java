@@ -93,7 +93,7 @@ public class TeamsDB implements DB<Team>{
         String teamLEAGUE = team.getLeague().LeagueName;
         String teamTEAMOWNER = team.getTeamOwner();
 
-        String query = "insert into referees values (?,?,?)";
+        String query = "insert into teams values (?,?,?)";
         PreparedStatement myStmt = connection.prepareStatement(query);
         myStmt.setString(1, teamNAME);
         myStmt.setString(2, teamLEAGUE);
@@ -112,7 +112,7 @@ public class TeamsDB implements DB<Team>{
         String tempoNAME = team.getTeamName();
 
         //create a query
-        String query = "UPDATE referee SET league=? WHERE name = ?";
+        String query = "UPDATE teams SET league=? WHERE name = ?";
 
         //prepare the statement
         PreparedStatement myStmt = connection.prepareStatement(query);
@@ -131,7 +131,7 @@ public class TeamsDB implements DB<Team>{
     public void delete(Team team) {
         try {
             String tempoNAME = team.getTeamName();
-            String query = "DELETE FROM users WHERE name = ?";
+            String query = "DELETE FROM teams WHERE name = ?";
             PreparedStatement myStmt = connection.prepareStatement(query);
             myStmt.setString(1,tempoNAME);
             int res = myStmt.executeUpdate();
