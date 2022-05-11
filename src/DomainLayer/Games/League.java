@@ -1,9 +1,7 @@
 package DomainLayer.Games;
-import DomainLayer.Enums;
 import DomainLayer.Users.AssociationRepresentative;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class League {
     public ArrayList<String> seasons = new ArrayList<>();
