@@ -26,17 +26,11 @@ public class Main {
     public static void main(String[] args) {
     }
 
-
-    private static Enums.ActionStatus LogIn() {
+    private static Enums.ActionStatus LogIn(Enums.UserType userType) {
         System.out.println("Please enter User-Name: ");
         String userName = sc.nextLine();
         System.out.println("Please enter User-Password: ");
         String userPassword = sc.nextLine();
-        Enums.UserType userType = chooseUserTypeOptions();
-        if(userType == null)
-        {
-            System.out.println("Invalid choice, restart Log-In process..");
-        }
         return SystemController.getInstance().LogIn(userName, userPassword, userType);
     }
 
@@ -49,55 +43,6 @@ public class Main {
     private static Enums.ActionStatus AddNewGame() {
         //todo verify user type - valid type
         return SystemController.getInstance().AddNewGame();
-    }
-
-    private static boolean isNumber(String str) {
-        for (char ch : str.toCharArray()) {
-            if (!Character.isDigit(ch))
-                return false;
-        }
-        return true;
-    }
-
-    private static int parseCheckInt(String str) {
-        try {
-            Integer.parseInt(str);
-        } catch (NumberFormatException e) {
-            return 1;
-        }
-
-        return 0;
-    }
-
-    private static int checkIfInt(String str, String message) {
-        while (parseCheckInt(str) > 0) {
-            System.out.println(message);
-            Scanner scIn = new Scanner(System.in);
-            str = scIn.nextLine();
-        }
-        return Integer.parseInt(str);
-    }
-
-    private static Enums.UserType chooseUserTypeOptions() {
-        System.out.println("Please choose User-Type - the options are: ");
-        System.out.println("1. Coach");
-        System.out.println("2. Fan");
-        System.out.println("3. Player");
-        System.out.println("4. Referee");
-        System.out.println("5. System Admin");
-        System.out.println("6. Team Manager");
-        System.out.println("7. Team Owner");
-        String userType = sc.nextLine();
-        if(!isNumber(userType))
-        {
-            return null;
-        }
-        int choice = Integer.parseInt(userType);
-        if(choice<1 || choice>7)
-        {
-            return null;
-        }
-        return StringToUserType(choice);
     }
 
     private static Enums.UserType StringToUserType(int userType) {
