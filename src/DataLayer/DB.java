@@ -8,9 +8,9 @@ public interface DB <T> {
 
     List<String> getAll();
 
-    void save(T t);
+    void save(T t) throws SQLException;
 
-    void update(T t, String[] params);
+    void update(T t, String[] params) throws SQLException;
 
     void delete(T t);
 }

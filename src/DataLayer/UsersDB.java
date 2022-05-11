@@ -1,5 +1,6 @@
 package DataLayer;
 
+import DomainLayer.Enums;
 import DomainLayer.Users.*;
 
 import java.sql.*;
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+
+import static java.lang.Integer.parseInt;
 
 public class UsersDB implements DB<AUser> {
     private static final UsersDB instance = new UsersDB();
@@ -44,7 +47,7 @@ public class UsersDB implements DB<AUser> {
                 String userName = rs.getString("name");
                 String password = rs.getString("password");
                 String userType = rs.getString("type");
-                int userStatus = rs.getInt("status");
+                String userStatus = rs.getString("status");
                 //// todo - (ido) - add the info to return object
                 answer = userName + ";" + password + ";" + userType + ";" + userStatus;
             }
@@ -75,7 +78,7 @@ public class UsersDB implements DB<AUser> {
                 String userName = rs.getString("name");
                 String password = rs.getString("password");
                 String userType = rs.getString("type");
-                int userStatus = rs.getInt("status");
+                String userStatus = rs.getString("status");
 
                 String current = userName + ";" + password + ";" + userType + ";" + userStatus;
                 result.add(current);
@@ -89,49 +92,60 @@ public class UsersDB implements DB<AUser> {
     }
 
     @Override
-    public void save(AUser user)  {
-        try {
-            String tempoNAME = "";
-            String tempoPASS = "getpassword();";
-            String tempoTYPE = "Referee";
-            int tempoACTIVATION = 1;
-            String query = "insert into users values (?,?,?,?)";
-            PreparedStatement myStmt = connection.prepareStatement(query);
-            myStmt.setString(1,tempoNAME);
-            myStmt.setString(2,tempoPASS);
-            myStmt.setString(3,tempoTYPE);
-            myStmt.setInt(4,tempoACTIVATION);
-            int res = myStmt.executeUpdate();
+    public void save(AUser user) throws SQLException {
 
-            System.out.println(res + " records inserted");
-            connection.close();
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-        }
+        String tempoNAME = user.getName();
+        String tempoPASS = user.getPassword();
+        String tempoTYPE = user.getUserType().toString();
+        String tempoACTIVATION = user.getStatus().toString();
+        String query = "insert into users values (?,?,?,?)";
+        PreparedStatement myStmt = connection.prepareStatement(query);
+        myStmt.setString(1, tempoNAME);
+        myStmt.setString(2, tempoPASS);
+        myStmt.setString(3, tempoTYPE);
+        myStmt.setString(4, tempoACTIVATION);
+        int res = myStmt.executeUpdate();
 
-    }
-
-
-    @Override
-    public void update(AUser user, String[] params) {
-
+        System.out.println(res + " records inserted");
     }
 
     @Override
-    // todo - (ido) - do we search the user with the name and then delete?
+    public void update(AUser user, String[] params) throws SQLException {
+
+        //AUser user details
+        String tempoNAME = user.getName();
+
+        //create a query
+        String query = "UPDATE users SET password = ?,type = ?,status=? WHERE name = ?";
+
+        //prepare the statement
+        PreparedStatement myStmt = connection.prepareStatement(query);
+
+
+        //set the arguments of the query
+        myStmt.setString(1, params[1]);
+        myStmt.setString(2, params[2]);
+        myStmt.setString(3, params[3]);
+        myStmt.setString(4, tempoNAME);
+
+        int res = myStmt.executeUpdate();
+        System.out.println(res + " records updated");
+
+    }
+
+    @Override
     public void delete(AUser user) {
         try {
-            Connection connection = DBConnector.getConnection();
-            String tempoNAME = "ido";
-            String tempoPASS = "ido";
-            String query = "DELETE FROM users WHERE userName=? and password=?";
+            String tempoNAME = user.getName();
+            String tempoPASS = user.getPassword();
+            String query = "DELETE FROM users WHERE name = ? and password = ?";
             PreparedStatement myStmt = connection.prepareStatement(query);
             myStmt.setString(1,tempoNAME);
             myStmt.setString(2,tempoPASS);
             int res = myStmt.executeUpdate();
 
             System.out.println(res + " records deleted");
-            connection.close();
+
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());
         }
