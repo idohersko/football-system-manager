@@ -43,4 +43,20 @@ public class Team {
         }
         return false;
     }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public String getTeamOwner() {
+        return teamOwner;
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public ArrayList<Game> getGames() {
+        return games;
+    }
 }

@@ -1,36 +1,31 @@
 package DataLayer;
 
-import DomainLayer.Enums;
-import DomainLayer.Users.*;
+import DomainLayer.Users.AUser;
+import DomainLayer.Users.Referee;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
 
-import static java.lang.Integer.parseInt;
-
-public class UsersDB implements DB<AUser> {
-    private static final UsersDB instance = new UsersDB();
+public class RefereesDB implements DB<Referee> {
+    private static final RefereesDB instance = new RefereesDB();
     private Connection connection;
 
     //private constructor to avoid client applications to use constructor
-    public static UsersDB getInstance(){
+    public static RefereesDB getInstance(){
         return instance;
     }
 
     //private constructor
-    private UsersDB() {
+    private RefereesDB() {
         this.connection = DBConnector.getConnection();
     }
-
     @Override
     public String get(String name) {
 
         try
         {
-            String query = "Select * from users where name = ?";
+            String query = "Select * from referees where name = ?";
 
             // Prepare Statement
             PreparedStatement myStmt = connection.prepareStatement(query);
@@ -48,7 +43,8 @@ public class UsersDB implements DB<AUser> {
                 String password = rs.getString("password");
                 String userType = rs.getString("type");
                 String userStatus = rs.getString("status");
-                answer = userName + ";" + password + ";" + userType + ";" + userStatus;
+                String level = rs.getString("level");
+                answer = userName + ";" + password + ";" + userType + ";" + userStatus+";"+level;
             }
             return answer;
 
@@ -72,16 +68,17 @@ public class UsersDB implements DB<AUser> {
         ArrayList<String> result = new ArrayList<String>();
         try {
             Statement stat = connection.createStatement();
-            ResultSet rs = stat.executeQuery("select * from users");
+            ResultSet rs = stat.executeQuery("select * from referees");
             while (rs.next()) {
                 String userName = rs.getString("name");
                 String password = rs.getString("password");
                 String userType = rs.getString("type");
                 String userStatus = rs.getString("status");
-
-                String current = userName + ";" + password + ";" + userType + ";" + userStatus;
+                String level = rs.getString("level");
+                String current = userName + ";" + password + ";" + userType + ";" + userStatus+";"+level;
                 result.add(current);
             }
+
             return result;
 
         } catch (SQLException ex) {
@@ -91,33 +88,34 @@ public class UsersDB implements DB<AUser> {
     }
 
     @Override
-    public void save(AUser user) throws SQLException {
+    public void save(Referee referee) throws SQLException {
 
-        String tempoNAME = user.getName();
-        String tempoPASS = user.getPassword();
-        String tempoTYPE = user.getUserType().toString();
-        String tempoACTIVATION = user.getStatus().toString();
-        String query = "insert into users values (?,?,?,?)";
+        String tempoNAME = referee.getName();
+        String tempoPASS = referee.getPassword();
+        String tempoTYPE = referee.getUserType().toString();
+        String tempoACTIVATION = referee.getStatus().toString();
+        String tempoLEVEL = referee.getRefereeLevel().toString();
+        String query = "insert into referees values (?,?,?,?,?)";
         PreparedStatement myStmt = connection.prepareStatement(query);
         myStmt.setString(1, tempoNAME);
         myStmt.setString(2, tempoPASS);
         myStmt.setString(3, tempoTYPE);
         myStmt.setString(4, tempoACTIVATION);
+        myStmt.setString(5, tempoLEVEL);
         int res = myStmt.executeUpdate();
 
         System.out.println(res + " records inserted");
     }
 
-    //i take pass and username and check if pass is ok if good i update and send SUCCESS , but,  if pass fail or username does not exist return FAIL
     @Override
-    //this function update a user from inactive to active
-    public void update(AUser user, String[] params) throws SQLException {
+    //this function update a referee from inactive to active
+    public void update(Referee referee, String[] params) throws SQLException {
 
         //AUser user details
-        String tempoNAME = user.getName();
+        String tempoNAME = referee.getName();
 
         //create a query
-        String query = "UPDATE users SET status=? WHERE name = ?";
+        String query = "UPDATE referee SET status=? WHERE name = ?";
 
         //prepare the statement
         PreparedStatement myStmt = connection.prepareStatement(query);
@@ -133,11 +131,11 @@ public class UsersDB implements DB<AUser> {
     }
 
     @Override
-    public void delete(AUser user) {
+    public void delete(Referee referee) {
         try {
-            String tempoNAME = user.getName();
-            String tempoPASS = user.getPassword();
-            String query = "DELETE FROM users WHERE name = ? and password = ?";
+            String tempoNAME = referee.getName();
+            String tempoPASS = referee.getPassword();
+            String query = "DELETE FROM referees WHERE name = ? and password = ?";
             PreparedStatement myStmt = connection.prepareStatement(query);
             myStmt.setString(1,tempoNAME);
             myStmt.setString(2,tempoPASS);

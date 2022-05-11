@@ -1,4 +1,6 @@
 package DomainLayer.Users;
+import DataLayer.LeaguesDB;
+import DataLayer.RefereesDB;
 import DomainLayer.Enums;
 
 import java.util.ArrayList;
@@ -15,11 +17,20 @@ public class Referee extends AUser {
 
     }
 
+    public static ArrayList<String> getAllRefereeFromDB()
+    {
+        RefereesDB refereeDB = RefereesDB.getInstance();
+        return refereeDB.getAll();
+    }
 
     public static String FindAvailableReferee()
     {
-        // todo implement - Find Available Referee in our DB - return string of it's user name
-        //return "" if no such an referee
+        ArrayList<String> all_referees = getAllRefereeFromDB();
+
+        for (String referee: all_referees) {
+            String[] referee_split = referee.split(";");
+            return referee_split[0];
+        }
         return "";
     }
 
