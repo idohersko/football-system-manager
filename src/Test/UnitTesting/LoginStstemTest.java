@@ -5,7 +5,10 @@ import ServiceLayer.SystemController;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class SystemControllerTest {
+// todo: test there is at least one signed-in system admin (undergone a registration process).
+//  this admin must be a user  (passed the registration process).
+
+public class LoginStstemTest {
     private SystemController controller;
 
     @Before

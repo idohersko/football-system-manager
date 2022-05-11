@@ -1,4 +1,4 @@
 package Test.AcceptanceTesting;
 
-public class AdminSystemTest {
+public class GameTest {
 }
