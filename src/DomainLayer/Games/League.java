@@ -1,4 +1,6 @@
 package DomainLayer.Games;
+import DataLayer.LeaguesDB;
+import DataLayer.TeamsDB;
 import DomainLayer.Users.AssociationRepresentative;
 
 import java.util.ArrayList;
@@ -12,9 +14,24 @@ public class League {
         this.associationRepresentatives.add(associationRepresentative);
     }
 
+    public static ArrayList<String> getAllLeaguesFromDB()
+    {
+        LeaguesDB leaguesDB = LeaguesDB.getInstance();
+        return leaguesDB.getAll();
+    }
+
     public static boolean CheckLeagueExists(String LeagueName)
     {
-        // todo implement - check that the League is exists
-        return true;
+        // check that the League exists
+        ArrayList<String> all_leagues = getAllLeaguesFromDB();
+
+        for (String league: all_leagues) {
+            String[] league_split = league.split(";");
+            if(league_split[0]==LeagueName)
+            {
+                    return true;
+            }
+        }
+        return false;
     }
 }
