@@ -19,6 +19,8 @@ public class SystemControllerTest {
         try {
             controller.LogInUser("us-dar","dar123");
         }catch (Exception e) {
+            // todo - don't print - make sure we got an error
+
             System.out.println(e.getMessage());
         }
 
@@ -29,11 +31,15 @@ public class SystemControllerTest {
         try {
             controller.LogInUser(null,"dar123");
         }catch (Exception e) {
+            // todo - don't print - make sure we got an error
+
             System.out.println(e.getMessage());
         }
         try {
             controller.LogInUser("us-dar",null);
         }catch (Exception e) {
+            // todo - don't print - make sure we got an error
+
             System.out.println(e.getMessage());
         }
 
@@ -41,6 +47,8 @@ public class SystemControllerTest {
         try {
             controller.LogInUser("us-dar","111");
         }catch (Exception e) {
+            // todo - don't print - make sure we got an error
+
             System.out.println(e.getMessage());
         }
 
@@ -48,6 +56,8 @@ public class SystemControllerTest {
         try {
             controller.LogInUser("da","dar123");
         }catch (Exception e) {
+            // todo - don't print - make sure we got an error
+
             System.out.println(e.getMessage());
         }
     }
@@ -58,6 +68,8 @@ public class SystemControllerTest {
         try {
             controller.LogOutUser("us-dar");
         }catch (Exception e) {
+            // todo - don't print - make sure we got an error
+
             System.out.println(e.getMessage());
         }
 
@@ -65,6 +77,8 @@ public class SystemControllerTest {
         try {
             controller.LogOutUser(null);
         }catch (Exception e) {
+            // todo - don't print - make sure we got an error
+
             System.out.println(e.getMessage());
         }
 
@@ -72,6 +86,8 @@ public class SystemControllerTest {
         try {
             controller.LogOutUser("us-dar");
         }catch (Exception e) {
+            // todo - don't print - make sure we got an error
+
             System.out.println(e.getMessage());
         }
 
@@ -79,6 +95,8 @@ public class SystemControllerTest {
         try {
             controller.LogOutUser("da");
         }catch (Exception e) {
+            // todo - don't print - make sure we got an error
+
             System.out.println(e.getMessage());
         }
     }
