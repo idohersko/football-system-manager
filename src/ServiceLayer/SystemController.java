@@ -62,9 +62,9 @@ public class SystemController {
         return Enums.ActionStatus.SUCCESS;
     }
 
-    public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee, String training){
+    public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee){
         //todo implement & update DB
-        if (name == null || email == null || training == null)
+        if (name == null || email == null)
             return  Enums.ActionStatus.WRONG_PARAMETERS;
 
         if ((levelReferee != Enums.RefereeLevel.Primary) && (levelReferee != Enums.RefereeLevel.Secondary))
