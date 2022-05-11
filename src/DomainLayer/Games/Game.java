@@ -29,8 +29,7 @@ public class Game {
 
     public static Enums.ActionStatus AddNewGameToDB(String date, String season, String field, String team_home, String team_guest, String referee)
     {
-        // todo - add the end of this func
-        //  we have new game in games DB, the teams connected to this game in their DB, referee also,
+        // todo - add the end of this func - we have new game in games DB
 
         return Enums.ActionStatus.SUCCESS;
     }
