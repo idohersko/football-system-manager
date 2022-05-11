@@ -4,6 +4,8 @@ import DomainLayer.Enums;
 import DomainLayer.Games.*;
 import DomainLayer.Users.*;
 
+import java.util.ArrayList;
+
 public class SystemController {
     private static SystemController systemControllerInstance;
 
@@ -71,7 +73,9 @@ public class SystemController {
         {
             return Enums.ActionStatus.FAIL;
         }
-        return Game.AddNewGameToDB(date, "Current",field,teamHomeName,teamGuestName,refereeUserName);
+        ArrayList<String> referees = new ArrayList<>();
+        referees.add(refereeUserName);
+        return Game.AddNewGameToDB(date, "Current",field,teamHomeName,teamGuestName,referees);
     }
 
 

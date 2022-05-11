@@ -1,5 +1,7 @@
 package DomainLayer.Games;
 
+import DataLayer.GamesDB;
+import DataLayer.UsersDB;
 import DomainLayer.Enums;
 import DomainLayer.Users.Referee;
 
@@ -16,21 +18,49 @@ public class Game {
     public int score;
     public ArrayList<Enums.EventType> events = new ArrayList<>();
 
-    public Game(String date, String season, String field, String team_home, String team_guest, String referee) {
+    public Game(String date, String season, String field, String team_home, String team_guest, ArrayList<String> referees) {
         this.date = date;
         this.season = season;
         this.field = field;
         this.team_home = team_home;
         this.team_guest = team_guest;
-        this.referees.add(referee);
+        this.referees = referees;
     }
 
     // ------------------------- DB interaction methods -------------------------
 
-    public static Enums.ActionStatus AddNewGameToDB(String date, String season, String field, String team_home, String team_guest, String referee)
+    public static Enums.ActionStatus AddNewGameToDB(String date, String season, String field, String team_home, String team_guest, ArrayList<String> referees)
     {
-        // todo - add the end of this func - we have new game in games DB
+        // add the end of this func - we have new game in games DB
+        Game game = new Game(date, season, field, team_home, team_guest, referees);
+
+        GamesDB gamesDB = GamesDB.getInstance();
+        gamesDB.save(game);
 
         return Enums.ActionStatus.SUCCESS;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public String getTeam_home() {
+        return team_home;
+    }
+
+    public String getTeam_guest() {
+        return team_guest;
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public ArrayList<String> getReferees() {
+        return referees;
     }
 }

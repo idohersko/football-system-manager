@@ -14,25 +14,26 @@ public class RefereeTest {
     }
 
     @Test
-    public void testNewRefereeRegistration(){
+    public void testNewRefereeRegistration() {
         // happy flow
-        Enums.ActionStatus status = controller.SignNewReferee("NaamaBaruch","naamaBru123@post.ac.il", Enums.RefereeLevel.Secondary);
+        Enums.ActionStatus status = controller.SignNewReferee("NaamaBaruch", "naamaBru123@post.ac.il", Enums.RefereeLevel.Secondary);
         assertEquals("Registration failed - should be a successful registration.", status, Enums.ActionStatus.SUCCESS);
 
         //Registration name who already exists in the system.
-        status = controller.SignNewReferee("NaamaBaruch","naamaBru@post.ac.il", Enums.RefereeLevel.Primary);
+        status = controller.SignNewReferee("NaamaBaruch", "naamaBru@post.ac.il", Enums.RefereeLevel.Primary);
         assertEquals("This user should be is already registered in", status, Enums.ActionStatus.FAIL);
-
-        // check that we handled the case of null parameters - Wrong input
-        status = controller.SignNewReferee("Naama","", Enums.RefereeLevel.Secondary);
+    }
+    @Test
+    public void testRegistrationNullArguments(){
+        //check that we handled the case of null parameters - Wrong input
+        Enums.ActionStatus status = controller.SignNewReferee("Naama",null, Enums.RefereeLevel.Secondary);
         assertEquals("Should be wrong in input parameters - email can't be null.", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
-        status = controller.SignNewReferee("","naamaBru123h@post.ac.il", Enums.RefereeLevel.Secondary);
+        status = controller.SignNewReferee(null,"naamaBru123h@post.ac.il", Enums.RefereeLevel.Secondary);
         assertEquals("Should be wrong input parameters - name can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
         status = controller.SignNewReferee("Liad","liad1313@post.ac.il", null);
         assertEquals("Should be wrong input parameters - level can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
-
     }
 
 
