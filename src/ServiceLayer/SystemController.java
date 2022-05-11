@@ -24,7 +24,6 @@ public class SystemController {
         {
             return Enums.ActionStatus.WRONG_PARAMETERS;
         }
-        // todo implement what happens if password is wrong / user doesn't exist
         return AUser.LogInUserToDB(userName, password);
     }
 
