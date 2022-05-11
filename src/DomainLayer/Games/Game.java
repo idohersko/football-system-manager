@@ -1,5 +1,7 @@
 package DomainLayer.Games;
 
+import DataLayer.GamesDB;
+import DataLayer.UsersDB;
 import DomainLayer.Enums;
 import DomainLayer.Users.Referee;
 
@@ -29,7 +31,11 @@ public class Game {
 
     public static Enums.ActionStatus AddNewGameToDB(String date, String season, String field, String team_home, String team_guest, ArrayList<String> referees)
     {
-        // todo - add the end of this func - we have new game in games DB
+        // add the end of this func - we have new game in games DB
+        Game game = new Game(date, season, field, team_home, team_guest, referees);
+
+        GamesDB gamesDB = GamesDB.getInstance();
+        gamesDB.save(game);
 
         return Enums.ActionStatus.SUCCESS;
     }
