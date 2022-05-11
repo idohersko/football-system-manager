@@ -11,41 +11,76 @@ public class SystemControllerTest {
     @Before
     public void initialize(){
         controller = SystemController.getInstance();
-        //todo need to SignUp to the System first.
-        //controller.SignIn("us-dar","dar123","Fan");
     }
 
     @Test
     public void testLogin(){
-        //login with existing userName and password - successful login
-        //todo successful login
-        controller.LogInUser("us-dar","dar123", Enums.UserType.Fan);
-        assertFalse(controller.GetAllSystemUsernames().isEmpty());
-        assertEquals(1, controller.GetAllSystemUsernames().size());
+        // Login with existing userName and password - successful login
+        try {
+            controller.LogInUser("us-dar","dar123");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-        //todo one of the parameter is null - wrong val password
+        // make sure our users list isn't empty
+        assertFalse(controller.GetAllSystemUsernames().isEmpty());
+
+        // make sure we handled the case of null parameters - wrong input
         try {
-            controller.LogInUser("us-dar",null,Enums.UserType.Fan);
+            controller.LogInUser(null,"dar123");
         }catch (Exception e) {
-            System.out.println("WrongPassword");
+            System.out.println(e.getMessage());
         }
-        //todo Wrong password
         try {
-            controller.LogInUser("us-dar","111",Enums.UserType.Fan);
+            controller.LogInUser("us-dar",null);
         }catch (Exception e) {
-            System.out.println("WrongPassword");
+            System.out.println(e.getMessage());
         }
-        //todo User name does not exist
+
+        // make sure we handled the case of wrong password for a given user
         try {
-            controller.LogInUser("da","dar123",Enums.UserType.Fan);
+            controller.LogInUser("us-dar","111");
         }catch (Exception e) {
-            System.out.println("UserNameDoesNotExist- wrong password typed");
+            System.out.println(e.getMessage());
+        }
+
+        // make sure we handled the case of wrong username input - user doesn't exist
+        try {
+            controller.LogInUser("da","dar123");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
     @Test
     public void testLogout(){
-        // todo implement
+        // Logout with logged-in user - successful logout
+        try {
+            controller.LogOutUser("us-dar");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // make sure we handled the case of null parameters - wrong input
+        try {
+            controller.LogOutUser(null);
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // make sure we handled the case of user that is already logged out
+        try {
+            controller.LogOutUser("us-dar");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // make sure we handled the case of wrong username input - user doesn't exist
+        try {
+            controller.LogOutUser("da");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 

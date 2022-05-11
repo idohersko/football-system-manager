@@ -18,7 +18,7 @@ public abstract class AUser {
 
     // ------------------------- DB interaction methods -------------------------
 
-    public static Enums.ActionStatus LogInUserToDB(String userName, String password, Enums.UserType userType)
+    public static Enums.ActionStatus LogInUserToDB(String userName, String password)
     {
         // login user in DB records
 

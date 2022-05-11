@@ -19,14 +19,22 @@ public class SystemController {
     }
 
 
-    public Enums.ActionStatus LogInUser(String userName, String password, Enums.UserType userType)
-    {
-        return AUser.LogInUserToDB(userName, password, userType);
+    public Enums.ActionStatus LogInUser(String userName, String password) throws Exception {
+        if(userName == null || password == null)
+        {
+            throw new Exception("Null input parameters");
+        }
+        // todo implement what happens if password is wrong / user doesn't exist
+        return AUser.LogInUserToDB(userName, password);
     }
 
-    public Enums.ActionStatus LogOutUser(String userName)
-    {
-
+    public Enums.ActionStatus LogOutUser(String userName) throws Exception {
+        if(userName == null)
+        {
+            throw new Exception("Null input parameter");
+        }
+        // todo implement what happens if  user doesn't exist
+        // todo - implemet what happens if user is already logged out
         return AUser.LogOutUserToDB(userName);
     }
 

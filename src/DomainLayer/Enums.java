@@ -3,7 +3,8 @@ package DomainLayer;
 public class Enums {
     public enum ActionStatus {
         SUCCESS,
-        FAIL
+        FAIL,
+        WRONG_PARAMETERS
     }
 
     public enum ActivationStatus {
