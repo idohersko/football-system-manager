@@ -9,8 +9,9 @@ public class Referee extends AUser {
     public ArrayList<String> seasons = new ArrayList<>();
     public ArrayList<Enums.EventType> events = new ArrayList<>();
 
-    public Referee(String name, String password, Enums.RefereeLevel refereeLevel) {
-        super(name, password);
+    public Referee(String name, String password, Enums.ActivationStatus status, Enums.UserType userType, Enums.RefereeLevel refereeLevel) {
+        super(name, password, status, userType);
         this.refereeLevel = refereeLevel;
+
     }
 }

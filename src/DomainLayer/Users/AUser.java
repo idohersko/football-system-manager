@@ -8,9 +8,11 @@ public abstract class AUser {
     private Enums.ActivationStatus status;
     private Enums.UserType userType;
 
-    public AUser(String name, String password) {
+    public AUser(String name, String password, Enums.ActivationStatus status, Enums.UserType userType) {
         this.name = name;
         this.password = password;
+        this.status = status;
+        this.userType = userType;
     }
 
     //private int ID; //todo - not needed - delete from task 2
