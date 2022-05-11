@@ -17,7 +17,7 @@ public class AssociationRepresentative extends AUser {
 
     // ------------------------- DB interaction methods -------------------------
 
-    public static Enums.ActionStatus NewRefereeRegistration(String userName, String email, Enums.RefereeLevel levelReferee){
+    public static Enums.ActionStatus NewRefereeRegistrationToDB(String userName, String email, Enums.RefereeLevel levelReferee){
 
         //Registration to the system(DB) a new Referee, creating for referee password to login and send an invitation to enter it.
         //todo if referee exist already in the system we will return FAIL
