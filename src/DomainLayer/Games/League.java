@@ -5,7 +5,6 @@ import DomainLayer.Users.AssociationRepresentative;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class League {
     public ArrayList<String> seasons = new ArrayList<>();
     public ArrayList<Team> teams = new ArrayList<>();

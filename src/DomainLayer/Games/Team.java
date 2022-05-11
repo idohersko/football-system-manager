@@ -19,5 +19,4 @@ public class Team {
         // todo implement - check that the team is exists with this league
         return true;
     }
-
 }

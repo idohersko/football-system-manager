@@ -16,7 +16,6 @@ public class Game {
     public int score;
     public ArrayList<Enums.EventType> events = new ArrayList<>();
 
-
     public Game(String date, String season, String field, String team_home, String team_guest, String referee) {
         this.date = date;
         this.season = season;

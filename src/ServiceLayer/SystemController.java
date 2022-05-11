@@ -79,9 +79,9 @@ public class SystemController {
         {
             return Enums.ActionStatus.FAIL;
         }
-
         return Game.AddNewGameToDB(date, "Current",field,teamHomeName,teamGuestName,refereeUserName);
     }
+
 
     public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee){
         //todo implement & update DB
