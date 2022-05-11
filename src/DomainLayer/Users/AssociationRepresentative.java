@@ -1,8 +1,11 @@
 package DomainLayer.Users;
 
+import DataLayer.UsersDB;
 import DomainLayer.Enums;
 import DomainLayer.Games.League;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,23 +15,34 @@ public class AssociationRepresentative extends AUser {
         super(name, password, status, userType);
     }
 
-    public static Enums.ActionStatus NewRefereeRegistration(String name, String email, Enums.RefereeLevel levelReferee)
-    {
+    // ------------------------- DB interaction methods -------------------------
 
-        //Registration to the system(DB) a new Referee, creating for referee userName and password to login and send an invitation to enter it.
-        //todo add new referee to DB (use user controller?)
-        //status -> will be return ActionStatus
-        Enums.ActionStatus status = Enums.ActionStatus.SUCCESS;
+    public static Enums.ActionStatus NewRefereeRegistration(String userName, String email, Enums.RefereeLevel levelReferee){
+
+        //Registration to the system(DB) a new Referee, creating for referee password to login and send an invitation to enter it.
         //todo if referee exist already in the system we will return FAIL
-        //create random password.
-        String pwd = generatePassword(6);
-        //create new User
-        Random c1 = new Random();
-        Random c2 = new Random();
-        String userName = name + c1 + "xx" + c2;
+        ArrayList<String> all_users = getAllUsersFromDB();
 
-        sendEmail(name ,email, userName ,pwd);
-        return status;
+        // check if user exists, if no return exception.
+        for (String user : all_users) {
+            String[] user_splitted = user.split(";");
+            if (user_splitted[0] == userName)
+                return Enums.ActionStatus.FAIL;
+        }
+        //else - we create new referee and give him random password for login to system.
+        String pwd = generatePassword(6);
+
+        // write to DB - add new referee.
+        UsersDB usersDB = UsersDB.getInstance();
+        try {
+            usersDB.save(new Referee(userName, pwd, Enums.ActivationStatus.INACTIVE, Enums.UserType.Referee, levelReferee));
+        }
+        catch (Exception e) {
+            return Enums.ActionStatus.FAIL;
+        }
+        sendEmail(userName, email, pwd);
+        return Enums.ActionStatus.SUCCESS;
+
     }
 
     public static boolean CheckRepresentativeLoggedIn(String RepresentativeName)
@@ -52,7 +66,7 @@ public class AssociationRepresentative extends AUser {
     }
 
 
-    private static String generatePassword(int length) {
+    private static String generatePassword(int length){
         String capitalCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
         String specialCharacters = "!@#$";
@@ -72,16 +86,13 @@ public class AssociationRepresentative extends AUser {
         return password;
     }
 
-    private static Enums.ActionStatus sendEmail(String name, String email, String userName, String pwd) {
-        /** An invitation was sent to 'name' as new referee in the System to email: 'email'
-         Welcome!
-         your use name: 'userName'
-         your password: 'pwd'
+    private static void sendEmail(String userName, String email, String pwd) {
+        /**
+         output: An invitation was sent to 'name' as new referee in the System to email: 'email'
+                 Welcome!
+                 your use name: 'userName'
+                 your password: 'pwd'
          */
-        if (!email.contains("@")){
-            return Enums.ActionStatus.FAIL;
-        }
-        return Enums.ActionStatus.SUCCESS;
     }
 
     public static boolean CheckRepresentativeExists(String RepresentativeName)
