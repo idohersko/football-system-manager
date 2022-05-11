@@ -1,8 +1,12 @@
 package ServiceLayer;
 
 import DomainLayer.Enums;
+import DomainLayer.Games.Game;
+import DomainLayer.Games.League;
+import DomainLayer.Games.Team;
 import DomainLayer.Users.AUser;
 import DomainLayer.Users.AssociationRepresentative;
+import DomainLayer.Users.Referee;
 import DomainLayer.Users.SystemAdmin;
 
 import java.util.ArrayList;
@@ -32,6 +36,8 @@ public class SystemController {
     public Enums.ActionStatus SetNewGame(String AssociationRepresentativeUserName, String LeagueName, String date,
                                          String teamHomeName, String teamGuestName, String field)
     {
+        Enums.ActionStatus status = Enums.ActionStatus.SUCCESS;
+
         if(AssociationRepresentativeUserName == null || LeagueName == null || date == null || teamHomeName == null
         || teamGuestName == null || field == null)
         {
@@ -50,21 +56,36 @@ public class SystemController {
             return Enums.ActionStatus.FAIL;
         }
 
-        // todo - make sure this league exists + add test
-        // todo make sure the teams exists and have this league + add test
-        // todo - find referee that is available - test when we have no referees
+        boolean isLeagueExist = League.CheckLeagueExists(LeagueName);
+        if(!isLeagueExist)
+        {
+            return Enums.ActionStatus.WRONG_PARAMETERS;
+        }
 
-        // todo - add the end - we have new game in games DB, the teams connedted to this game in their DB, referee also,
-        // todo - send alert about the game to teams, referee and fans.
+        boolean isTeamExistWithLeague_home = Team.CheckTeamExistsWithTheLeague(teamHomeName, LeagueName);
+        if(!isTeamExistWithLeague_home)
+        {
+            return Enums.ActionStatus.WRONG_PARAMETERS;
+        }
 
-        // todo - add main success case
+        boolean isTeamExistWithLeague_guest = Team.CheckTeamExistsWithTheLeague(teamGuestName, LeagueName);
+        if(!isTeamExistWithLeague_guest)
+        {
+            return Enums.ActionStatus.WRONG_PARAMETERS;
+        }
 
-        return Enums.ActionStatus.SUCCESS;
+        String refereeUserName = Referee.FindAvailableReferee();
+        if(refereeUserName == "")
+        {
+            return Enums.ActionStatus.FAIL;
+        }
+        return Game.AddNewGameToDB(date, "Current",field,teamHomeName,teamGuestName,refereeUserName);
     }
 
-    public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee, String training){
+
+    public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee){
         //todo implement & update DB
-        if (name == null || email == null || training == null)
+        if (name == null || email == null)
             return  Enums.ActionStatus.WRONG_PARAMETERS;
 
         if ((levelReferee != Enums.RefereeLevel.Primary) && (levelReferee != Enums.RefereeLevel.Secondary))

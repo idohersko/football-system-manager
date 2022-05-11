@@ -13,21 +13,27 @@ public class LoginStstemTest {
     }
 
     @Test
-    public void testLogin(){
+    public void testLoginHappyFlow() {
         // Login with existing userName and password - successful login
         Enums.ActionStatus status = controller.LogInUser("us-dar","dar123");
-        assertEquals("Login failed - couldn't login the user", status, Enums.ActionStatus.SUCCESS);
+        assertEquals("Login failed - couldn't login the user", status, Enums.ActionStatus.SUCCESS); //todo DAR to namma: need to opposite
+    }
 
-        // Login with existing userName and password - but user is already login
-        status = controller.LogInUser("us-dar","dar123");
-        assertEquals("This user is already logged in", status, Enums.ActionStatus.FAIL);
-
+    @Test
+    public void testLoginNullArguments(){
         // make sure we handled the case of null parameters - wrong input
-        status = controller.LogInUser(null,"dar123");
+        Enums.ActionStatus status = controller.LogInUser(null,"dar123");
         assertEquals("Wrong input parameters - username can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
         status = controller.LogInUser("us-dar",null);
         assertEquals("Wrong input parameters - password can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
+    }
+
+    @Test
+    public void testLoginWrongInput(){
+        // Login with existing userName and password - but user is already login
+        Enums.ActionStatus status = controller.LogInUser("us-dar","dar123");
+        assertEquals("This user is already logged in", status, Enums.ActionStatus.FAIL);
 
         // make sure we handled the case of wrong password for a given user
         status = controller.LogInUser("us-dar","111");

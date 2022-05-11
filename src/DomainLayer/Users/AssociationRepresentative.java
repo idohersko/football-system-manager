@@ -19,7 +19,7 @@ public class AssociationRepresentative extends AUser {
         //todo add new referee to DB (use user controller?)
         //status -> will be return ActionStatus
         Enums.ActionStatus status = Enums.ActionStatus.SUCCESS;
-
+        //todo if referee exist already in the system we will return FAIL
         //create random password.
         String pwd = generatePassword(6);
         //create new User
@@ -58,12 +58,16 @@ public class AssociationRepresentative extends AUser {
         return password;
     }
 
-    private static void sendEmail(String name, String email, String userName, String pwd) {
+    private static Enums.ActionStatus sendEmail(String name, String email, String userName, String pwd) {
         /** An invitation was sent to 'name' as new referee in the System to email: 'email'
          Welcome!
          your use name: 'userName'
          your password: 'pwd'
          */
+        if (!email.contains("@")){
+            return Enums.ActionStatus.FAIL;
+        }
+        return Enums.ActionStatus.SUCCESS;
     }
 
     public static boolean CheckRepresentativeExists(String RepresentativeName)

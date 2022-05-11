@@ -16,6 +16,8 @@ import java.util.Scanner;
 
 //todo : Make sure there is at least one signed-in system admin (undergone a registration process).
 
+// todo - add to DB all what we have in our tests
+
 public class Main {
     public static Scanner sc = new Scanner(System.in);
 
