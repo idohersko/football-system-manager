@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
         UsersDB instance = UsersDB.getInstance();
-        instance.getAll();
+        System.out.println(instance.getAll());
     }
 
 }
