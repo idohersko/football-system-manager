@@ -30,10 +30,6 @@ public abstract class AUser {
 
     public static Enums.ActionStatus LogInUserToDB(String userName, String password)
     {
-        if(userName== null || password == null)
-        {
-            return Enums.ActionStatus.WRONG_PARAMETERS;
-        }
         ArrayList<String> all_users = getAllUsersFromDB();
 
         // check if user exists, if yes 0 verify it's password
