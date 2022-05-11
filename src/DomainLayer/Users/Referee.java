@@ -1,5 +1,6 @@
 package DomainLayer.Users;
 import DataLayer.LeaguesDB;
+import DataLayer.RefereesDB;
 import DomainLayer.Enums;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Referee extends AUser {
 
     public static ArrayList<String> getAllRefereeFromDB()
     {
-        RefereeDB refereeDB = RefereeDB.getInstance();
+        RefereesDB refereeDB = RefereesDB.getInstance();
         return refereeDB.getAll();
     }
 

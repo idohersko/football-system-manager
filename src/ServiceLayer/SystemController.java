@@ -1,22 +1,14 @@
 package ServiceLayer;
 
 import DomainLayer.Enums;
-import DomainLayer.Games.Game;
-import DomainLayer.Games.League;
-import DomainLayer.Games.Team;
-import DomainLayer.Users.AUser;
-import DomainLayer.Users.AssociationRepresentative;
-import DomainLayer.Users.Referee;
-import DomainLayer.Users.SystemAdmin;
-
-import java.util.ArrayList;
+import DomainLayer.Games.*;
+import DomainLayer.Users.*;
 
 public class SystemController {
     private static SystemController systemControllerInstance;
 
     private SystemController() {
     }
-
     public static SystemController getInstance() {
         if (systemControllerInstance == null){
             systemControllerInstance = new SystemController();
@@ -90,7 +82,7 @@ public class SystemController {
         if ((levelReferee != Enums.RefereeLevel.Primary) && (levelReferee != Enums.RefereeLevel.Secondary))
             return Enums.ActionStatus.WRONG_PARAMETERS;
 
-        return AssociationRepresentative.NewRefereeRegistration(name, email,levelReferee);
+        return AssociationRepresentative.NewRefereeRegistrationToDB(name, email,levelReferee);
     }
 
     public boolean VerifySystemAdmin()
