@@ -1,7 +1,5 @@
 package DomainLayer.Games;
 
-import DomainLayer.Users.TeamOwner;
-
 import java.util.ArrayList;
 
 public class Team {

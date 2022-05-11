@@ -1,7 +1,6 @@
 package DomainLayer.Games;
 import DomainLayer.Enums;
 import DomainLayer.Users.AssociationRepresentative;
-import DomainLayer.Users.TeamOwner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
