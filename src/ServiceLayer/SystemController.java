@@ -83,8 +83,9 @@ public class SystemController {
         return Game.AddNewGameToDB(date, "Current",field,teamHomeName,teamGuestName,refereeUserName);
     }
 
-    public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee, String training){
-        if (name == null || email == null || training == null)
+    public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee){
+        //todo implement & update DB
+        if (name == null || email == null)
             return  Enums.ActionStatus.WRONG_PARAMETERS;
 
         if ((levelReferee != Enums.RefereeLevel.Primary) && (levelReferee != Enums.RefereeLevel.Secondary))
