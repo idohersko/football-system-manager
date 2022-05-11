@@ -27,9 +27,11 @@ public class SystemController {
         return AUser.LogInUserToDB(userName, password);
     }
 
-    public Enums.ActionStatus SetNewGame()
+    public Enums.ActionStatus SetNewGame(String AssociationRepresentativeUserName)
     {
         //todo implement & update DB
+        // make sure that AssociationRepresentativeUserName is looged in (add test of logged out case)
+
         return Enums.ActionStatus.SUCCESS;
     }
 

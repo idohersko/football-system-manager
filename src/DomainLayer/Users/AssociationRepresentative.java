@@ -4,7 +4,7 @@ import DomainLayer.Enums;
 import DomainLayer.Games.League;
 
 public class AssociationRepresentative extends AUser {
-    public League league;
+//    public League league; todo - change in task 2 - no need this connection? in UC and in CD.
 
     public AssociationRepresentative(String name, String password) {
         super(name, password);
