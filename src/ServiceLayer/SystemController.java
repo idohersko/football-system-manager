@@ -35,4 +35,17 @@ public class SystemController {
 
     }
 
+    private static Enums.UserType StringToUserType(int userType) {
+        return switch (userType) {
+            case 1 -> Enums.UserType.Coach;
+            case 2 -> Enums.UserType.Fan;
+            case 3 -> Enums.UserType.Player;
+            case 4 -> Enums.UserType.Referee;
+            case 5 -> Enums.UserType.SystemAdmin;
+            case 6 -> Enums.UserType.TeamManager;
+            case 7 -> Enums.UserType.TeamOwner;
+            default -> null;
+        };
+    }
+
 }

@@ -26,35 +26,4 @@ public class Main {
     public static void main(String[] args) {
     }
 
-    private static Enums.ActionStatus LogIn(Enums.UserType userType) {
-        System.out.println("Please enter User-Name: ");
-        String userName = sc.nextLine();
-        System.out.println("Please enter User-Password: ");
-        String userPassword = sc.nextLine();
-        return SystemController.getInstance().LogIn(userName, userPassword, userType);
-    }
-
-    private static Enums.ActionStatus logOut() {
-        System.out.println("Please enter User-Name: ");
-        String userName = sc.nextLine();
-        return SystemController.getInstance().LogOut(userName);
-    }
-
-    private static Enums.ActionStatus AddNewGame() {
-        //todo verify user type - valid type
-        return SystemController.getInstance().AddNewGame();
-    }
-
-    private static Enums.UserType StringToUserType(int userType) {
-        return switch (userType) {
-            case 1 -> Enums.UserType.Coach;
-            case 2 -> Enums.UserType.Fan;
-            case 3 -> Enums.UserType.Player;
-            case 4 -> Enums.UserType.Referee;
-            case 5 -> Enums.UserType.SystemAdmin;
-            case 6 -> Enums.UserType.TeamManager;
-            case 7 -> Enums.UserType.TeamOwner;
-            default -> null;
-        };
-    }
 }

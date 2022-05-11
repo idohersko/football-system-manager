@@ -20,6 +20,8 @@ public abstract class AUser {
 
     public static Enums.ActionStatus LogInUserToDB(String userName, String password, Enums.UserType userType)
     {
+        // login user in DB records
+
         //todo add check if this userName exist - only signed user can log in!
         // if no - return error, if yes - log in & update DB with new status = ACTIVE
 
@@ -28,6 +30,8 @@ public abstract class AUser {
 
     public static Enums.ActionStatus LogOutUserToDB(String userName)
     {
+        // logout user in DB records
+
         //todo add check if this userName exist and active - only active logged in user can log out!
         // if no - return error, if yes - log out & update DB with new status
 
