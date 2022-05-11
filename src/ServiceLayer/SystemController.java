@@ -57,12 +57,6 @@ public class SystemController {
         return Enums.ActionStatus.SUCCESS;
     }
 
-    public Enums.ActionStatus SignNewReferee()
-    {
-        //todo implement & update DB
-        return Enums.ActionStatus.SUCCESS;
-    }
-
     public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee, String training){
         //todo implement & update DB
         if (name == null || email == null || training == null)

@@ -15,6 +15,7 @@ public class AssociationRepresentative extends AUser {
 
     public static Enums.ActionStatus NewRefereeRegistration(String name, String email, Enums.RefereeLevel levelReferee)
     {
+        
         //Registration to the system(DB) a new Referee, creating for referee userName and password to login and send an invitation to enter it.
         //todo add new referee to DB (use user controller?)
         //status -> will be return ActionStatus
