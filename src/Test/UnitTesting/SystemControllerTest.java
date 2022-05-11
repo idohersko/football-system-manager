@@ -1,5 +1,6 @@
 package Test.UnitTesting;
 
+import DomainLayer.Enums;
 import ServiceLayer.SystemController;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -18,28 +19,33 @@ public class SystemControllerTest {
     public void testLogin(){
         //login with existing userName and password - successful login
         //todo successful login
-        controller.LogIn("us-dar","dar123","Fan");
-        assertFalse(controller.getUsers().isEmpty());
-        assertEquals(1, controller.getUsers().size());
+        controller.LogInUser("us-dar","dar123", Enums.UserType.Fan);
+        assertFalse(controller.GetAllSystemUsernames().isEmpty());
+        assertEquals(1, controller.GetAllSystemUsernames().size());
 
         //todo one of the parameter is null - wrong val password
         try {
-            controller.LogIn("us-dar",null,"Fan");
+            controller.LogInUser("us-dar",null,Enums.UserType.Fan);
         }catch (Exception e) {
             System.out.println("WrongPassword");
         }
         //todo Wrong password
         try {
-            controller.LogIn("us-dar","111","Fan");
+            controller.LogInUser("us-dar","111",Enums.UserType.Fan);
         }catch (Exception e) {
             System.out.println("WrongPassword");
         }
         //todo User name does not exist
         try {
-            controller.LogIn("da","dar123","Fan");
+            controller.LogInUser("da","dar123",Enums.UserType.Fan);
         }catch (Exception e) {
             System.out.println("UserNameDoesNotExist- wrong password typed");
         }
+    }
+
+    @Test
+    public void testLogout(){
+        // todo implement
     }
 
 

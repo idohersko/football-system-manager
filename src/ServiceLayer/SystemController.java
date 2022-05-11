@@ -3,6 +3,8 @@ package ServiceLayer;
 import DomainLayer.Enums;
 import DomainLayer.Users.AUser;
 
+import java.util.ArrayList;
+
 public class SystemController {
     private static SystemController systemControllerInstance;
 
@@ -17,22 +19,33 @@ public class SystemController {
     }
 
 
-    public Enums.ActionStatus LogIn(String userName, String password, Enums.UserType userType)
+    public Enums.ActionStatus LogInUser(String userName, String password, Enums.UserType userType)
     {
         return AUser.LogInUserToDB(userName, password, userType);
     }
 
-    public Enums.ActionStatus LogOut(String userName)
+    public Enums.ActionStatus LogOutUser(String userName)
     {
 
         return AUser.LogOutUserToDB(userName);
     }
 
-    public Enums.ActionStatus AddNewGame()
+    public Enums.ActionStatus SetNewGame()
     {
-        //todo implement & update DB - different controller
+        //todo implement & update DB
         return Enums.ActionStatus.SUCCESS;
+    }
 
+    public Enums.ActionStatus SignNewReferee()
+    {
+        //todo implement & update DB
+        return Enums.ActionStatus.SUCCESS;
+    }
+
+    public ArrayList GetAllSystemUsernames()
+    {
+        //todo implement- return all user names from DB
+        return new ArrayList();
     }
 
     private static Enums.UserType StringToUserType(int userType) {
