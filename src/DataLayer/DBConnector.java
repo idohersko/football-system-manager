@@ -6,7 +6,7 @@ public class DBConnector {
 
     //singelton - private constructor - just one connection allowed
     private static final DBConnector instance = new DBConnector();
-    public static final String URL = "jdbc:mysql://localhost:3306/";
+    public static final String URL = "jdbc:sqlite:footballDB.db";
     public static final String USER = "root";
     public static final String PASS = "root";
 
@@ -29,6 +29,7 @@ public class DBConnector {
         try {
             //DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             //return DriverManager.getConnection(URL, USER, PASS);
+//            Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(URL,USER,PASS);
             return conn;
         } catch (SQLException ex) {
