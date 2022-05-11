@@ -22,7 +22,8 @@ public class Test {
         Enums.ActionStatus status = controller.LogInUser("Ido","id123");
         assertEquals("failed - this test should have been success", status, Enums.ActionStatus.SUCCESS);
 
-        status = controller.SignNewReferee("NammaBaruch","naamaBru123@post.ac.il", Enums.RefereeLevel.Secondary);
-        assertEquals("Registration failed - should be a successful registration.", status, Enums.ActionStatus.SUCCESS);
+        status = controller.SetNewGame("Talya", "England", "01-01-2023",
+                "Manchester", "Liverpool", "Manchester_Stadium");
+        assertEquals("Failed - this test should have been success", status, Enums.ActionStatus.SUCCESS);
     }
 }
