@@ -32,7 +32,6 @@ public class Game {
         // todo - add the end of this func
         //  we have new game in games DB, the teams connected to this game in their DB, referee also,
 
-
         return Enums.ActionStatus.SUCCESS;
     }
 }

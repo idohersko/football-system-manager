@@ -6,12 +6,14 @@ import DomainLayer.Users.AssociationRepresentative;
 import java.util.ArrayList;
 
 public class League {
+    public String LeagueName;
     public ArrayList<String> seasons = new ArrayList<>();
     public ArrayList<Team> teams = new ArrayList<>();
     public ArrayList<AssociationRepresentative> associationRepresentatives = new ArrayList<>();
 
-    public League(AssociationRepresentative associationRepresentative) {
+    public League(AssociationRepresentative associationRepresentative, String LeagueName) {
         this.associationRepresentatives.add(associationRepresentative);
+        this.LeagueName = LeagueName;
     }
 
     public static ArrayList<String> getAllLeaguesFromDB()
