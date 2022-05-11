@@ -84,7 +84,6 @@ public class SystemController {
 
 
     public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee){
-        //todo implement & update DB
         if (name == null || email == null)
             return  Enums.ActionStatus.WRONG_PARAMETERS;
 

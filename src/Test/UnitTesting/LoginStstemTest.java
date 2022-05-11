@@ -31,16 +31,12 @@ public class LoginStstemTest {
 
     @Test
     public void testLoginWrongInput(){
-        // Login with existing userName and password - but user is already login
-        Enums.ActionStatus status = controller.LogInUser("us-dar","dar123");
-        assertEquals("This user is already logged in", status, Enums.ActionStatus.FAIL);
-
         // make sure we handled the case of wrong password for a given user
-        status = controller.LogInUser("us-dar","111");
-        assertEquals("Wrong input parameters - password doesn't match this user", status, Enums.ActionStatus.WRONG_PARAMETERS);
+        Enums.ActionStatus status = controller.LogInUser("us-dar","111");
+        assertEquals("Wrong input parameters - password doesn't match this user", status, Enums.ActionStatus.FAIL);
 
         // make sure we handled the case of wrong username input - user doesn't exist
         status = controller.LogInUser("da","dar123");
-        assertEquals("Wrong input parameters - user does't exist", status, Enums.ActionStatus.WRONG_PARAMETERS);
+        assertEquals("Wrong input parameters - user does't exist", status, Enums.ActionStatus.FAIL);
     }
 }

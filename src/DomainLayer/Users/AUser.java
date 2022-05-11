@@ -1,6 +1,9 @@
 package DomainLayer.Users;
 
+import DataLayer.UsersDB;
 import DomainLayer.Enums;
+
+import java.util.ArrayList;
 
 public abstract class AUser {
     private String name;
@@ -21,7 +24,17 @@ public abstract class AUser {
 
     public static Enums.ActionStatus LogInUserToDB(String userName, String password)
     {
-        // todo implement what happens if password is wrong / user doesn't exist
+        SystemAdmin temp_user = new SystemAdmin(userName, password, Enums.ActivationStatus.INACTIVE,Enums.UserType.SystemAdmin);
+        UsersDB usersDB = UsersDB.getInstance();
+        try {
+            usersDB.update(temp_user,new String[]{Enums.ActivationStatus.ACTIVE.toString()});
+        }
+        catch (Exception e)
+        {
+            return Enums.ActionStatus.FAIL;
+        }
+
+        // todo implement what happens if password is wrong / user doesn't exist, and if it's already logged in
 
         // login user in DB records
         //todo add check if this userName exist - only signed user can log in!
