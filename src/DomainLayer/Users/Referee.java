@@ -22,4 +22,8 @@ public class Referee extends AUser {
         //return "" if no such an referee
         return "";
     }
+
+    public Enums.RefereeLevel getRefereeLevel() {
+        return refereeLevel;
+    }
 }
