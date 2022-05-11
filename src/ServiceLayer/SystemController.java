@@ -2,6 +2,7 @@ package ServiceLayer;
 
 import DomainLayer.Enums;
 import DomainLayer.Users.AUser;
+import DomainLayer.Users.AssociationRepresentative;
 import DomainLayer.Users.SystemAdmin;
 
 import java.util.ArrayList;
@@ -37,7 +38,12 @@ public class SystemController {
             return Enums.ActionStatus.WRONG_PARAMETERS;
         }
 
-        // make sure that AssociationRepresentativeUserName is looged in (add test of logged out case)
+        boolean isLogged = AssociationRepresentative.CheckRepresentativeLoggedIn(AssociationRepresentativeUserName);
+        if(!isLogged)
+        {
+            return Enums.ActionStatus.FAIL; //add test for this case
+        }
+
         // todo - make sure this league exists - add test
         // todo test of null aruuments
         // todo make sure the teams exsits and have this legaue - add test

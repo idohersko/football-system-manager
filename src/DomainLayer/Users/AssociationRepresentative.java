@@ -18,8 +18,9 @@ public class AssociationRepresentative extends AUser {
         // todo - implement this function & add new referee to DB (use user controller?)
     }
 
-    public void SetGamesSchedulePolicy(String refereeName)
+    public static boolean CheckRepresentativeLoggedIn(String RepresentativeName)
     {
-        // todo - implement if needed
+        // todo implement - check that the given Representative is logged in in our DB
+        return true;
     }
 }

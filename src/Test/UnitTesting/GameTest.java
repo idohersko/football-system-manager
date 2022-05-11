@@ -20,7 +20,7 @@ public class GameTest {
     public void testGameScheduling() {
         //todo - add tests
 
-        // happy flow
+        // happy flow - all parameters are OK
         Enums.ActionStatus status = controller.SetNewGame("Guy", "England", "01-01-2023",
                 "Manchester", "Liverpool", "Manchester_Stadium");
         assertEquals(" ", status, Enums.ActionStatus.SUCCESS);
