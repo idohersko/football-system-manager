@@ -26,6 +26,7 @@ public class Main {
     public static void main(String[] args) {
     }
 
+
     private static Enums.ActionStatus LogIn() {
         System.out.println("Please enter User-Name: ");
         String userName = sc.nextLine();

@@ -10,6 +10,7 @@ public class Referee extends AUser {
     public ArrayList<Enums.EventType> events = new ArrayList<>();
 
 
+
     public Referee(String name, String password, Enums.UserType type, Enums.ActivationStatus activationStatus, String training) {
         super(name, password, type, activationStatus);
         this.training = training;

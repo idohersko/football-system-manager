@@ -9,6 +9,7 @@ public class Season {
     public ArrayList<Game> games = new ArrayList<>();
     public League league;
 
+
     public Season(League league) {
         this.league = league;
     }

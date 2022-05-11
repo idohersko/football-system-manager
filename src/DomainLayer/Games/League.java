@@ -6,6 +6,7 @@ import DomainLayer.Users.TeamOwner;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class League {
     public HashMap<Season, Enums.ScoreAndPositionPolicy> ScoreCalculationPolicies = new HashMap();
     public HashMap<Season, Enums.ScheduleGamesPolicy> GamesSchedulingPolicies = new HashMap();

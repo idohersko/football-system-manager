@@ -4,6 +4,7 @@ import DomainLayer.Users.Referee;
 
 import java.util.ArrayList;
 
+
 public class Game {
     public String date;
     public String time;

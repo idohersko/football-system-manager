@@ -7,6 +7,7 @@ import DomainLayer.Games.Team;
 
 public class TeamOwner extends AInnerTeamUser {
 
+
     public TeamOwner(String name, String password, Enums.UserType type, Enums.ActivationStatus activationStatus, Team team) {
         super(name, password, type, activationStatus, team);
     }

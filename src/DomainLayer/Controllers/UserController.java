@@ -15,6 +15,7 @@ public class UserController {
         return userControllerInstance;
     }
 
+
     public Enums.ActionStatus SignInNewUser(String userName, String password, Enums.UserType userType)
     {
         //todo add check if this userName already exist - only one user per user name!
