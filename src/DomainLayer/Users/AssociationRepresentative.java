@@ -33,8 +33,22 @@ public class AssociationRepresentative extends AUser {
 
     public static boolean CheckRepresentativeLoggedIn(String RepresentativeName)
     {
-        // todo implement - check that the given Representative is logged in in our DB
-        return true;
+        // check that the given Representative is logged-in in our DB
+
+        ArrayList<String> all_users = getAllUsersFromDB();
+
+        for (String user: all_users) {
+            String[] user_splitted = user.split(";");
+            if(user_splitted[0]==RepresentativeName)
+            {
+                if(user_splitted[2]==Enums.ActivationStatus.ACTIVE.toString())
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
     }
 
 
