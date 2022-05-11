@@ -21,7 +21,7 @@ public class GameTest {
         //todo - add tests
 
         // happy flow - all parameters are OK
-        Enums.ActionStatus status = controller.SetNewGame("Guy", "England", "01-01-2023",
+        Enums.ActionStatus status = controller.SetNewGame("Talya", "England", "01-01-2023",
                 "Manchester", "Liverpool", "Manchester_Stadium");
         assertEquals(" ", status, Enums.ActionStatus.SUCCESS);
 
@@ -50,5 +50,14 @@ public class GameTest {
                 "Manchester", "Liverpool", null);
         assertEquals("Wrong input parameters - the values can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
+        // AssociationRepresentative isn't exist - should fail
+        status = controller.SetNewGame("Dar", "England", "01-01-2023",
+                "Manchester", "Liverpool", "Manchester_Stadium");
+        assertEquals("Association Representative isn't exist", status, Enums.ActionStatus.WRONG_PARAMETERS);
+
+        // AssociationRepresentative logged out - should fail
+        status = controller.SetNewGame("Ido", "England", "01-01-2023",
+                "Manchester", "Liverpool", "Manchester_Stadium");
+        assertEquals("Association Representative must log in first", status, Enums.ActionStatus.FAIL);
     }
 }

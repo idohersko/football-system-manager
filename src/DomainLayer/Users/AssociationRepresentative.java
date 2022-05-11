@@ -66,4 +66,10 @@ public class AssociationRepresentative extends AUser {
          your password: 'pwd'
          */
     }
+
+    public static boolean CheckRepresentativeExists(String RepresentativeName)
+    {
+        // todo implement - check that the given Representative is exists
+        return true;
+    }
 }
