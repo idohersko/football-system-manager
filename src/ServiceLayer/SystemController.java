@@ -38,15 +38,20 @@ public class SystemController {
             return Enums.ActionStatus.WRONG_PARAMETERS;
         }
 
+        boolean isExist = AssociationRepresentative.CheckRepresentativeExists(AssociationRepresentativeUserName);
+        if(!isExist)
+        {
+            return Enums.ActionStatus.WRONG_PARAMETERS;
+        }
+
         boolean isLogged = AssociationRepresentative.CheckRepresentativeLoggedIn(AssociationRepresentativeUserName);
         if(!isLogged)
         {
-            return Enums.ActionStatus.FAIL; //add test for this case
+            return Enums.ActionStatus.FAIL;
         }
 
-        // todo - make sure this league exists - add test
-        // todo test of null aruuments
-        // todo make sure the teams exsits and have this legaue - add test
+        // todo - make sure this league exists + add test
+        // todo make sure the teams exists and have this league + add test
         // todo - find referee that is available - test when we have no referees
 
         // todo - add the end - we have new game in games DB, the teams connedted to this game in their DB, referee also,
@@ -54,12 +59,6 @@ public class SystemController {
 
         // todo - add main success case
 
-        return Enums.ActionStatus.SUCCESS;
-    }
-
-    public Enums.ActionStatus SignNewReferee()
-    {
-        //todo implement & update DB
         return Enums.ActionStatus.SUCCESS;
     }
 

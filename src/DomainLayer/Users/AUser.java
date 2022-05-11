@@ -5,6 +5,8 @@ import DomainLayer.Enums;
 public abstract class AUser {
     private String name;
     private String password;
+    private Enums.ActivationStatus status;
+    private Enums.UserType userType;
 
     public AUser(String name, String password) {
         this.name = name;
@@ -44,4 +46,19 @@ public abstract class AUser {
         this.password = password;
     }
 
+    public Enums.ActivationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(Enums.ActivationStatus status) {
+        this.status = status;
+    }
+
+    public Enums.UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Enums.UserType userType) {
+        this.userType = userType;
+    }
 }
