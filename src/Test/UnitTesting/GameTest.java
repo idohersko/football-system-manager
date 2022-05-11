@@ -21,7 +21,7 @@ public class GameTest {
         //todo - add tests
 
         // happy flow
-        Enums.ActionStatus status = controller.SetNewGame();
+        Enums.ActionStatus status = controller.SetNewGame("Guy", "England");
         assertEquals(" ", status, Enums.ActionStatus.SUCCESS);
 
     }
