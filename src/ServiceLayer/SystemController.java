@@ -19,10 +19,10 @@ public class SystemController {
     }
 
 
-    public Enums.ActionStatus LogInUser(String userName, String password) throws Exception {
+    public Enums.ActionStatus LogInUser(String userName, String password){
         if(userName == null || password == null)
         {
-            throw new Exception("Null input parameters");
+            return Enums.ActionStatus.WRONG_PARAMETERS;
         }
         // todo implement what happens if password is wrong / user doesn't exist
         return AUser.LogInUserToDB(userName, password);
@@ -38,12 +38,6 @@ public class SystemController {
     {
         //todo implement & update DB
         return Enums.ActionStatus.SUCCESS;
-    }
-
-    public ArrayList GetAllSystemUsernames()
-    {
-        //todo implement- return all user names from DB
-        return new ArrayList();
     }
 
     private static Enums.UserType StringToUserType(int userType) {

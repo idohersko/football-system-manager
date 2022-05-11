@@ -1,12 +1,8 @@
 package Test.UnitTesting;
-
 import DomainLayer.Enums;
 import ServiceLayer.SystemController;
 import org.junit.*;
 import static org.junit.Assert.*;
-
-// todo: test there is at least one signed-in system admin (undergone a registration process).
-//  this admin must be a user  (passed the registration process).
 
 public class LoginStstemTest {
     private SystemController controller;
@@ -19,51 +15,22 @@ public class LoginStstemTest {
     @Test
     public void testLogin(){
         // Login with existing userName and password - successful login
-        try {
-            controller.LogInUser("us-dar","dar123");
-        }catch (Exception e) {
-            // todo - don't print - make sure we got an error
-
-            System.out.println(e.getMessage());
-        }
-
-        // make sure our users list isn't empty
-        assertFalse(controller.GetAllSystemUsernames().isEmpty());
+        Enums.ActionStatus status = controller.LogInUser("us-dar","dar123");
+        assertEquals("Login failed - couldn't login the user", status, Enums.ActionStatus.SUCCESS);
 
         // make sure we handled the case of null parameters - wrong input
-        try {
-            controller.LogInUser(null,"dar123");
-        }catch (Exception e) {
-            // todo - don't print - make sure we got an error
+        status = controller.LogInUser(null,"dar123");
+        assertEquals("Wrong input parameters - username can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
-            System.out.println(e.getMessage());
-        }
-        try {
-            controller.LogInUser("us-dar",null);
-        }catch (Exception e) {
-            // todo - don't print - make sure we got an error
-
-            System.out.println(e.getMessage());
-        }
+        status = controller.LogInUser("us-dar",null);
+        assertEquals("Wrong input parameters - password can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
         // make sure we handled the case of wrong password for a given user
-        try {
-            controller.LogInUser("us-dar","111");
-        }catch (Exception e) {
-            // todo - don't print - make sure we got an error
-
-            System.out.println(e.getMessage());
-        }
+        status = controller.LogInUser("us-dar","111");
+        assertEquals("Wrong input parameters - password doesn't match this user", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
         // make sure we handled the case of wrong username input - user doesn't exist
-        try {
-            controller.LogInUser("da","dar123");
-        }catch (Exception e) {
-            // todo - don't print - make sure we got an error
-
-            System.out.println(e.getMessage());
-        }
+        status = controller.LogInUser("da","dar123");
+        assertEquals("Wrong input parameters - user does't exist", status, Enums.ActionStatus.WRONG_PARAMETERS);
     }
-
-
 }
