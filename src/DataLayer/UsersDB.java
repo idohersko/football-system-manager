@@ -54,40 +54,40 @@ public class UsersDB implements DB<AUser> {
 
             // Display function to show the Resultset
             System.out.println("username      password      type      status");
-            while (rs.next()) {
-                String userName = rs.getString("userName");
-                String password = rs.getString("password");
-                String userType = rs.getString("userType");
-                int userStatus = rs.getInt("statusActivation");
-                // todo - (ido) - add the info to return object
-
-                if (userType.toLowerCase(Locale.ROOT).equals("referee") ){
-                    return Optional.of(new Referee()); //todo - (ido) - check that this return a referee
-                }
-                if (userType.toLowerCase(Locale.ROOT).equals("coach") ){
-                    return Optional.of(new Coach()); //todo - (ido) - check that this return a referee
-                }
-                if (userType.toLowerCase(Locale.ROOT).equals("player") ){
-                    return Optional.of(new Player()); //todo - (ido) - check that this return a referee
-                }
-                if (userType.toLowerCase(Locale.ROOT).equals("systemadmin") ){
-                    return Optional.of(new SystemAdmin()); //todo - (ido) - check that this return a referee
-                }
-                if (userType.toLowerCase(Locale.ROOT).equals("fan") ){
-                    return Optional.of(new Fan()); //todo - (ido) - check that this return a referee
-                }
-//                if (userType.toLowerCase(Locale.ROOT).equals("guest") ){
-//                    return Optional.of(new Guest()); //todo - (ido) - check that this return a referee
+//            while (rs.next()) {
+//                String userName = rs.getString("userName");
+//                String password = rs.getString("password");
+//                String userType = rs.getString("userType");
+//                int userStatus = rs.getInt("statusActivation");
+//                // todo - (ido) - add the info to return object
+//
+//                if (userType.toLowerCase(Locale.ROOT).equals("referee") ){
+//                    return Optional.of(new Referee()); //todo - (ido) - check that this return a referee
 //                }
-                if (userType.toLowerCase(Locale.ROOT).equals("teamowner") ){
-                    return Optional.of(new TeamOwner()); //todo - (ido) - check that this return a referee
-                }
-                if (userType.toLowerCase(Locale.ROOT).equals("teammanager") ){
-                    return Optional.of(new TeamManager()); //todo - (ido) - check that this return a referee
-                }
-                String p = userName + " " + password + " " + userType + " " + userStatus;
-                System.out.println(p);
-            }
+//                if (userType.toLowerCase(Locale.ROOT).equals("coach") ){
+//                    return Optional.of(new Coach()); //todo - (ido) - check that this return a referee
+//                }
+//                if (userType.toLowerCase(Locale.ROOT).equals("player") ){
+//                    return Optional.of(new Player()); //todo - (ido) - check that this return a referee
+//                }
+//                if (userType.toLowerCase(Locale.ROOT).equals("systemadmin") ){
+//                    return Optional.of(new SystemAdmin()); //todo - (ido) - check that this return a referee
+//                }
+//                if (userType.toLowerCase(Locale.ROOT).equals("fan") ){
+//                    return Optional.of(new Fan()); //todo - (ido) - check that this return a referee
+//                }
+////                if (userType.toLowerCase(Locale.ROOT).equals("guest") ){
+////                    return Optional.of(new Guest()); //todo - (ido) - check that this return a referee
+////                }
+//                if (userType.toLowerCase(Locale.ROOT).equals("teamowner") ){
+//                    return Optional.of(new TeamOwner()); //todo - (ido) - check that this return a referee
+//                }
+//                if (userType.toLowerCase(Locale.ROOT).equals("teammanager") ){
+//                    return Optional.of(new TeamManager()); //todo - (ido) - check that this return a referee
+//                }
+//                String p = userName + " " + password + " " + userType + " " + userStatus;
+//                System.out.println(p);
+//            }
 
             // todo - (ido) - !!!!!!!!!!!!!!!! maybe all the above should not be in the datalayer  ??????????
 
