@@ -1,7 +1,7 @@
 package ServiceLayer;
 
 import DomainLayer.Enums;
-import DomainLayer.Controllers.UserController;
+import DomainLayer.Users.AUser;
 
 public class SystemController {
     private static SystemController systemControllerInstance;
@@ -19,12 +19,13 @@ public class SystemController {
 
     public Enums.ActionStatus LogIn(String userName, String password, Enums.UserType userType)
     {
-        return UserController.getInstance().LogInUser(userName, password, userType);
+        return AUser.LogInUserToDB(userName, password, userType);
     }
 
     public Enums.ActionStatus LogOut(String userName)
     {
-        return UserController.getInstance().LogOutUser(userName);
+
+        return AUser.LogOutUserToDB(userName);
     }
 
     public Enums.ActionStatus AddNewGame()
