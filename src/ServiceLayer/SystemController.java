@@ -40,6 +40,15 @@ public class SystemController {
         return Enums.ActionStatus.SUCCESS;
     }
 
+    public boolean VerifySystemAdmin()
+    {
+        //todo implement - make sure we have at least one (true if yes, false if not)
+        // todo: test there is at least one signed-in system admin (undergone a registration process).
+        //  this admin must be a user  (passed the registration process).
+
+        return false;
+    }
+
     private static Enums.UserType StringToUserType(int userType) {
         return switch (userType) {
             case 1 -> Enums.UserType.Coach;
