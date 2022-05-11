@@ -1,9 +1,11 @@
 package DomainLayer.Users;
 
+import DomainLayer.Enums;
+
 public class SystemAdmin extends AUser {
 
-    public SystemAdmin(String name, String password) {
-        super(name, password);
+    public SystemAdmin(String name, String password, Enums.ActivationStatus status, Enums.UserType userType) {
+        super(name, password, status, userType);
     }
 
     // ------------------------- DB interaction methods -------------------------

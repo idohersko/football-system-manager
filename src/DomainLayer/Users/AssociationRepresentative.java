@@ -6,11 +6,10 @@ import DomainLayer.Games.League;
 import java.util.Random;
 
 public class AssociationRepresentative extends AUser {
+
 //    public League league; todo - change in task 2 - no need this connection? in UC and in CD.
-
-
-    public AssociationRepresentative(String name, String password) {
-        super(name, password);
+    public AssociationRepresentative(String name, String password, Enums.ActivationStatus status, Enums.UserType userType) {
+        super(name, password, status, userType);
     }
 
     public static Enums.ActionStatus NewRefereeRegistration(String name, String email, Enums.RefereeLevel levelReferee)
