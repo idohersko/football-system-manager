@@ -1,5 +1,10 @@
 package DomainLayer.Games;
 
+import DataLayer.TeamsDB;
+import DataLayer.UsersDB;
+import DomainLayer.Enums;
+import DomainLayer.Users.SystemAdmin;
+
 import java.util.ArrayList;
 
 public class Team {
@@ -14,9 +19,28 @@ public class Team {
         this.league = league;
     }
 
+    public static ArrayList<String> getAllTeamFromDB()
+    {
+        TeamsDB teamsDB = TeamsDB.getInstance();
+        return teamsDB.getAll();
+    }
+
     public static boolean CheckTeamExistsWithTheLeague(String teamName, String leagueName)
     {
-        // todo implement - check that the team is exists with this league
-        return true;
+        // check that the team exists and have this league
+        ArrayList<String> all_teams = getAllTeamFromDB();
+
+        for (String team: all_teams) {
+            String[] team_split = team.split(";");
+            if(team_split[0]==teamName)
+            {
+                if(team_split[1]==leagueName)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
     }
 }
