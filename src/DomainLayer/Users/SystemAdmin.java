@@ -1,6 +1,9 @@
 package DomainLayer.Users;
 
+import DataLayer.UsersDB;
 import DomainLayer.Enums;
+
+import java.util.ArrayList;
 
 public class SystemAdmin extends AUser {
 
@@ -12,10 +15,17 @@ public class SystemAdmin extends AUser {
 
     public static boolean VerifySystemAdmin()
     {
-        // todo - implemnt check with users DB:
-        //todo implement - make sure we have at *active* least one (true if yes, false if not)
-        // todo: test there is at least one signed-in system admin (undergone a registration process).
-        //  this admin must be a user  (passed the registration process).
+        // make sure that we have at least one *active* SystemAdmin (return true if 'yes', false if 'not')
+        ArrayList<String> all_users = getAllUsersFromDB();
+
+        for (String user: all_users) {
+            String[] user_splitted = user.split(";");
+            if(user_splitted[2]==Enums.UserType.SystemAdmin.toString()
+                    && user_splitted[3]==Enums.ActivationStatus.ACTIVE.toString())
+            {
+                return true;
+            }
+        }
         return false;
     }
 }
