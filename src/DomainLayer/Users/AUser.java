@@ -33,8 +33,12 @@ public abstract class AUser {
         // check if user exists, if yes 0 verify it's password
         for (String user: all_users) {
             String[] user_splitted = user.split(";");
-            if(user_splitted[0]==userName && user_splitted[1]==password)
+            if(user_splitted[0]==userName)
             {
+                if(user_splitted[1]!=password)
+                {
+                    return Enums.ActionStatus.FAIL;
+                }
                 // write to DB - change user to active state
                 UsersDB usersDB = UsersDB.getInstance();
                 try {

@@ -77,9 +77,13 @@ public class AssociationRepresentative extends AUser {
 
         for (String user: all_users) {
             String[] user_splitted = user.split(";");
-            if(user_splitted[0]==RepresentativeName && user_splitted[2]==Enums.UserType.AssociationRepresentative.toString())
+            if(user_splitted[0]==RepresentativeName)
             {
-                return true;
+                if(user_splitted[2]==Enums.UserType.AssociationRepresentative.toString())
+                {
+                    return true;
+                }
+                return false;
             }
         }
         return false;
