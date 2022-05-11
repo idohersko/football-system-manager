@@ -2,6 +2,8 @@ package ServiceLayer;
 
 import DomainLayer.Enums;
 import DomainLayer.Users.AUser;
+import DomainLayer.Users.AssociationRepresentative;
+import DomainLayer.Users.SystemAdmin;
 
 import java.util.ArrayList;
 
@@ -24,13 +26,34 @@ public class SystemController {
         {
             return Enums.ActionStatus.WRONG_PARAMETERS;
         }
-        // todo implement what happens if password is wrong / user doesn't exist
         return AUser.LogInUserToDB(userName, password);
     }
 
-    public Enums.ActionStatus SetNewGame()
+    public Enums.ActionStatus SetNewGame(String AssociationRepresentativeUserName, String LeagueName, String date,
+                                         String teamHomeName, String teamGuestName, String field)
     {
-        //todo implement & update DB
+        if(AssociationRepresentativeUserName == null || LeagueName == null || date == null || teamHomeName == null
+        || teamGuestName == null || field == null)
+        {
+            return Enums.ActionStatus.WRONG_PARAMETERS;
+        }
+
+        boolean isLogged = AssociationRepresentative.CheckRepresentativeLoggedIn(AssociationRepresentativeUserName);
+        if(!isLogged)
+        {
+            return Enums.ActionStatus.FAIL; //add test for this case
+        }
+
+        // todo - make sure this league exists - add test
+        // todo test of null aruuments
+        // todo make sure the teams exsits and have this legaue - add test
+        // todo - find referee that is available - test when we have no referees
+
+        // todo - add the end - we have new game in games DB, the teams connedted to this game in their DB, referee also,
+        // todo - send alert about the game to teams, referee and fans.
+
+        // todo - add main success case
+
         return Enums.ActionStatus.SUCCESS;
     }
 
@@ -40,26 +63,20 @@ public class SystemController {
         return Enums.ActionStatus.SUCCESS;
     }
 
-    public boolean VerifySystemAdmin()
-    {
-        //todo implement - make sure we have at least one (true if yes, false if not)
-        // todo: test there is at least one signed-in system admin (undergone a registration process).
-        //  this admin must be a user  (passed the registration process).
+    public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee, String training){
+        //todo implement & update DB
+        if (name == null || email == null || training == null)
+            return  Enums.ActionStatus.WRONG_PARAMETERS;
 
-        return false;
+        if ((levelReferee != Enums.RefereeLevel.Primary) && (levelReferee != Enums.RefereeLevel.Secondary))
+            return Enums.ActionStatus.WRONG_PARAMETERS;
+
+        return AssociationRepresentative.NewRefereeRegistration(name, email,levelReferee);
     }
 
-    private static Enums.UserType StringToUserType(int userType) {
-        return switch (userType) {
-            case 1 -> Enums.UserType.Coach;
-            case 2 -> Enums.UserType.Fan;
-            case 3 -> Enums.UserType.Player;
-            case 4 -> Enums.UserType.Referee;
-            case 5 -> Enums.UserType.SystemAdmin;
-            case 6 -> Enums.UserType.TeamManager;
-            case 7 -> Enums.UserType.TeamOwner;
-            default -> null;
-        };
+    public boolean VerifySystemAdmin()
+    {
+        return SystemAdmin.VerifySystemAdmin();
     }
 
 }

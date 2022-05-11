@@ -18,6 +18,10 @@ public class LoginStstemTest {
         Enums.ActionStatus status = controller.LogInUser("us-dar","dar123");
         assertEquals("Login failed - couldn't login the user", status, Enums.ActionStatus.SUCCESS);
 
+        // Login with existing userName and password - but user is already login
+        status = controller.LogInUser("us-dar","dar123");
+        assertEquals("This user is already logged in", status, Enums.ActionStatus.FAIL);
+
         // make sure we handled the case of null parameters - wrong input
         status = controller.LogInUser(null,"dar123");
         assertEquals("Wrong input parameters - username can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);

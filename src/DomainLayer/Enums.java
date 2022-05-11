@@ -37,11 +37,6 @@ public class Enums {
         Substitution
     }
 
-    public enum ScoreAndPositionPolicy {
-        Policy_1,
-        Policy_2
-    }
-
     public enum ScheduleGamesPolicy {
         EachPairOnceASeason,
         EachPairOnceInEachHome
