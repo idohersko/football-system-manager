@@ -13,4 +13,11 @@ public class Team {
         this.teamOwner = teamOwner;
         this.league = league;
     }
+
+    public static boolean CheckTeamExistsWithTheLeague(String teamName, String leagueName)
+    {
+        // todo implement - check that the team is exists with this league
+        return true;
+    }
+
 }

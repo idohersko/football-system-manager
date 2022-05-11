@@ -9,20 +9,31 @@ import java.util.ArrayList;
 public class Game {
     public String date;
     public String season;
-    public Team team_home;
-    public Team team_guest;
+    public String team_home;
+    public String team_guest;
     public String field;
-    public ArrayList<Referee> referees = new ArrayList<>();
+    public ArrayList<String> referees = new ArrayList<>();
     public int score;
     public ArrayList<Enums.EventType> events = new ArrayList<>();
 
 
-    public Game(String date, String season, String field, Team team_home, Team team_guest, ArrayList<Referee> referees) {
+    public Game(String date, String season, String field, String team_home, String team_guest, String referee) {
         this.date = date;
         this.season = season;
         this.field = field;
         this.team_home = team_home;
         this.team_guest = team_guest;
-        this.referees = referees;
+        this.referees.add(referee);
+    }
+
+    // ------------------------- DB interaction methods -------------------------
+
+    public static Enums.ActionStatus AddNewGameToDB(String date, String season, String field, String team_home, String team_guest, String referee)
+    {
+        // todo - add the end of this func
+        //  we have new game in games DB, the teams connected to this game in their DB, referee also,
+
+
+        return Enums.ActionStatus.SUCCESS;
     }
 }

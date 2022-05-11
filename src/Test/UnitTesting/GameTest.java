@@ -64,5 +64,21 @@ public class GameTest {
         status = controller.SetNewGame("Ido", "England", "01-01-2023",
                 "Manchester", "Liverpool", "Manchester_Stadium");
         assertEquals("Association Representative must log in first", status, Enums.ActionStatus.FAIL);
+
+        // League isn't exist - should fail
+        status = controller.SetNewGame("Talya", "Naama", "01-01-2023",
+                "Manchester", "Liverpool", "Manchester_Stadium");
+        assertEquals(" ", status, Enums.ActionStatus.WRONG_PARAMETERS);
+
+        // Team isn't exist - should fail
+        status = controller.SetNewGame("Talya", "England", "01-01-2023",
+                "Maxim", "Liverpool", "Manchester_Stadium");
+        assertEquals(" ", status, Enums.ActionStatus.WRONG_PARAMETERS);
+
+        // Team has other League - should fail
+        status = controller.SetNewGame("Talya", "UK", "01-01-2023",
+                "Manchester", "Liverpool", "Manchester_Stadium");
+        assertEquals(" ", status, Enums.ActionStatus.WRONG_PARAMETERS);
+
     }
 }
