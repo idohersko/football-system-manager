@@ -1,11 +1,13 @@
 package DomainLayer.Users;
 
+import DomainLayer.Enums;
 import DomainLayer.Games.League;
 
 public class AssociationRepresentative extends AUser {
     public League league;
 
-    public AssociationRepresentative(League league) {
+    public AssociationRepresentative(String name, String password, Enums.UserType type, Enums.ActivationStatus activationStatus, League league) {
+        super(name, password, type, activationStatus);
         this.league = league;
     }
 

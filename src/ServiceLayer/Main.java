@@ -1,113 +1,53 @@
 package ServiceLayer;
+import DomainLayer.Enums;
+import java.util.Scanner;
 
 /*
 * //
-* ask maxim on the main loop  , and if it's ok to start with some objects in the system,
+* todo ask maxim on the main loop  , and if it's ok to start with some objects in the system,
 * and if we need to implement only the 3 UC or all functions?
 like - reports, complaints, log, sign in for all users, remove users, see their details?..
 *
 *
-* do we need to handle Sign In UC, or only log in?
-// We didn't handle sign in UC, only log in and sign in for FAN type (guests only)
+* todo do we need to handle Sign In UC, or only log in?
+// todo We didn't handle sign in UC, only log in and sign in for FAN type (guests only)
 * */
 
 // todo - start with some employs, teams (and what needed for the 3 UC) in the system DB - can't sign in from this main
 // todo - compare to task 2 - write all differences at the end
 
-import DomainLayer.Enums;
+//todo : At this point make sure there is at least one signed-in system admin (undergone a registration process).
+// this admin must be a user  (passed the registration process).
 
-import java.util.Scanner;
 
 public class Main {
+    public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        //todo : At this point make sure there is at least one signed-in system admin (undergone a registration process).
-        // this admin must be a user  (passed the registration process).
-
-        SystemController systemController = SystemController.getInstance();
-
-        System.out.println("Hi guest! welcome to out Football System");
-
-        Scanner sc = new Scanner(System.in);
-        printMenu();
-
-        String choiceStr = sc.nextLine();
-        int choice = 100;
-        if (isNumber(choiceStr)) {
-            choice = checkIfInt(choiceStr, "Please enter a valid option : ");
-        } else {
-            System.out.println("You have typed a wrong input.");
-            System.out.println("Please enter a number, by the followed menu");
-        }
-        while (choice != 0) {
-            switch (choice) {
-                case 1:
-                    SignInGuestAsFan(sc);
-                    break;
-                case 2:
-                    LogIn(sc);
-                    break;
-                case 3:
-                    logOut(sc);
-                    break;
-                case 4:
-                    SignNewReferee(sc);
-                    break;
-                case 5:
-                    AddNewGame(sc);
-                    break;
-                default:
-                    System.out.println("Please enter a valid number (between 0-5), by the followed menu");
-            }
-            System.out.println("\nWhat would you like to do next ?\n");
-            printMenu();
-            choiceStr = sc.nextLine();
-            if (isNumber(choiceStr)) {
-                choice = checkIfInt(choiceStr,"Please enter a valid option : ");
-            }}
-        System.out.println("Goodbye! See you soon..");
     }
 
-    private static void SignInGuestAsFan(Scanner sc) {
-        System.out.println("Please choose User-Name: ");
-        String userName = sc.nextLine();
-        System.out.println("Please choose User-Password: ");
-        String userPassword = sc.nextLine();
-        Enums.ActionStatus status = SystemController.getInstance().SignInGuest(userName, userPassword);
-        ResponseToActionStatus(status);
-    }
-
-    private static void LogIn(Scanner sc) {
+    private static Enums.ActionStatus LogIn() {
         System.out.println("Please enter User-Name: ");
         String userName = sc.nextLine();
         System.out.println("Please enter User-Password: ");
         String userPassword = sc.nextLine();
-        Enums.UserType userType = chooseUserTypeOptions(sc);
+        Enums.UserType userType = chooseUserTypeOptions();
         if(userType == null)
         {
             System.out.println("Invalid choice, restart Log-In process..");
         }
-        Enums.ActionStatus status = SystemController.getInstance().LogIn(userName, userPassword, userType);
-        ResponseToActionStatus(status);
+        return SystemController.getInstance().LogIn(userName, userPassword, userType);
     }
 
-    private static void logOut(Scanner sc) {
+    private static Enums.ActionStatus logOut() {
         System.out.println("Please enter User-Name: ");
         String userName = sc.nextLine();
-        Enums.ActionStatus status = SystemController.getInstance().LogOut(userName);
-        ResponseToActionStatus(status);
+        return SystemController.getInstance().LogOut(userName);
     }
 
-    private static void SignNewReferee(Scanner sc) {
+    private static Enums.ActionStatus AddNewGame() {
         //todo verify user type - valid type
-        Enums.ActionStatus status = SystemController.getInstance().SignNewReferee();
-        ResponseToActionStatus(status);
-    }
-
-    private static void AddNewGame(Scanner sc) {
-        //todo verify user type - valid type
-        Enums.ActionStatus status = SystemController.getInstance().AddNewGame();
-        ResponseToActionStatus(status);
+        return SystemController.getInstance().AddNewGame();
     }
 
     private static boolean isNumber(String str) {
@@ -126,7 +66,6 @@ public class Main {
         }
 
         return 0;
-
     }
 
     private static int checkIfInt(String str, String message) {
@@ -138,17 +77,7 @@ public class Main {
         return Integer.parseInt(str);
     }
 
-    private static void printMenu() {
-        System.out.println("Please select your desired action: ");
-        System.out.println("1. Sign in as one of our dear Fans");
-        System.out.println("2. Log in to the system");
-        System.out.println("3. Log out from the system");
-        System.out.println("4. Registration of a new referee");
-        System.out.println("5. Add new game");
-        System.out.println("0. Close system");
-    }
-
-    private static Enums.UserType chooseUserTypeOptions(Scanner sc) {
+    private static Enums.UserType chooseUserTypeOptions() {
         System.out.println("Please choose User-Type - the options are: ");
         System.out.println("1. Coach");
         System.out.println("2. Fan");
@@ -181,17 +110,5 @@ public class Main {
             case 7 -> Enums.UserType.TeamOwner;
             default -> null;
         };
-    }
-
-    private static void ResponseToActionStatus(Enums.ActionStatus actionStatus) {
-        if(actionStatus == Enums.ActionStatus.SUCCESS)
-        {
-            System.out.println("Your request completed successfully");
-        }
-        else
-        {
-            System.out.println("Operation failed, please restart");
-        }
-
     }
 }

@@ -1,7 +1,6 @@
 package DomainLayer.Controllers;
 
 import DomainLayer.Enums;
-import ServiceLayer.SystemController;
 
 public class UserController {
     private static UserController userControllerInstance; // singletone

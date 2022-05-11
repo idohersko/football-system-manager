@@ -16,12 +16,6 @@ public class SystemController {
         return systemControllerInstance;
     }
 
-    public Enums.ActionStatus SignInGuest(String userName, String password)
-    {
-        return UserController.getInstance().SignInNewUser(userName, password, Enums.UserType.Fan);
-
-    }
-
     public Enums.ActionStatus LogIn(String userName, String password, Enums.UserType userType)
     {
         return UserController.getInstance().LogInUser(userName, password, userType);
@@ -33,13 +27,6 @@ public class SystemController {
     }
 
     public Enums.ActionStatus AddNewGame()
-    {
-        //todo implement & update DB - different controller
-        return Enums.ActionStatus.SUCCESS;
-
-    }
-
-    public Enums.ActionStatus SignNewReferee()
     {
         //todo implement & update DB - different controller
         return Enums.ActionStatus.SUCCESS;
