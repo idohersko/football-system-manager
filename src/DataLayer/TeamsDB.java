@@ -6,17 +6,17 @@ import java.util.Optional;
 
 public class TeamsDB implements DB<TeamsDB>{
     @Override
-    public Optional<TeamsDB> get(long id) {
-        return Optional.empty();
+    public String get(String name) {
+        return "";
     }
 
     @Override
-    public List<TeamsDB> getAll() {
+    public List<String> getAll() {
         return null;
     }
 
     @Override
-    public void save(TeamsDB teams) throws SQLException {
+    public void save(TeamsDB t) {
 
     }
 

@@ -6,17 +6,17 @@ import java.util.Optional;
 
 public class GamesDB implements DB<GamesDB> {
     @Override
-    public Optional<GamesDB> get(long id) {
-        return Optional.empty();
+    public String get(String name) {
+        return "";
     }
 
     @Override
-    public List<GamesDB> getAll() {
+    public List<String> getAll() {
         return null;
     }
 
     @Override
-    public void save(GamesDB games) throws SQLException {
+    public void save(GamesDB t) {
 
     }
 

@@ -4,13 +4,13 @@ import java.util.*;
 
 public interface DB <T> {
 
-    Optional<T> get(long id);
+    String get(String name);
 
-    List<T> getAll();
+    List<String> getAll();
 
     void save(T t) throws SQLException;
 
-    void update(T t, String[] params);
+    void update(T t, String[] params) throws SQLException;
 
     void delete(T t);
 }
