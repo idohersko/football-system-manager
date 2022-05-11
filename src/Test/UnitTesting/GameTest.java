@@ -21,8 +21,34 @@ public class GameTest {
         //todo - add tests
 
         // happy flow
-        Enums.ActionStatus status = controller.SetNewGame("Guy", "England");
+        Enums.ActionStatus status = controller.SetNewGame("Guy", "England", "01-01-2023",
+                "Manchester", "Liverpool", "Manchester_Stadium");
         assertEquals(" ", status, Enums.ActionStatus.SUCCESS);
+
+        // make sure we handled the case of null parameters - wrong input
+        status = controller.SetNewGame(null, "England", "01-01-2023",
+                "Manchester", "Liverpool", "Manchester_Stadium");
+        assertEquals("Wrong input parameters - the values can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
+
+        status = controller.SetNewGame("Guy", null, "01-01-2023",
+                "Manchester", "Liverpool", "Manchester_Stadium");
+        assertEquals("Wrong input parameters - the values can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
+
+        status = controller.SetNewGame("Guy", "England", null,
+                "Manchester", "Liverpool", "Manchester_Stadium");
+        assertEquals("Wrong input parameters - the values can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
+
+        status = controller.SetNewGame("Guy", "England", "01-01-2023",
+                null, "Liverpool", "Manchester_Stadium");
+        assertEquals("Wrong input parameters - the values can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
+
+        status = controller.SetNewGame("Guy", "England", "01-01-2023",
+                "Manchester", null, "Manchester_Stadium");
+        assertEquals("Wrong input parameters - the values can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
+
+        status = controller.SetNewGame("Guy", "England", "01-01-2023",
+                "Manchester", "Liverpool", null);
+        assertEquals("Wrong input parameters - the values can't be null", status, Enums.ActionStatus.WRONG_PARAMETERS);
 
     }
 }
