@@ -19,7 +19,7 @@ public class Test {
     public void TestLoginAndAddGame() {
         // Login with existing userName and password - successful login
 
-        Enums.ActionStatus status = controller.LogInUser("Ido","id123");
+        Enums.ActionStatus status = controller.LogInUser("Talya","sakov");
         assertEquals("failed - this test should have been success", status, Enums.ActionStatus.SUCCESS);
 
         status = controller.SetNewGame("Talya", "England", "01-01-2023",
