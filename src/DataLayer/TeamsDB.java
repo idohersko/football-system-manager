@@ -128,9 +128,11 @@ public class TeamsDB implements DB<Team>{
     }
 
     @Override
-    public void delete(Team team) {
+    public void delete(Team t) {
+
         try {
-            String tempoNAME = team.getTeamName();
+            String tempoNAME = t.getTeamName();
+
             String query = "DELETE FROM teams WHERE name = ?";
             PreparedStatement myStmt = connection.prepareStatement(query);
             myStmt.setString(1,tempoNAME);
@@ -141,6 +143,8 @@ public class TeamsDB implements DB<Team>{
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());
         }
+
+
 
     }
 }
