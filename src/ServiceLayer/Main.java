@@ -13,7 +13,8 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
         SystemController controller = SystemController.getInstance();
-        controller.VerifySystemAdmin();
+        controller.SetNewGame("Talya", "England", "01-01-2023",
+                "Maxim", "Liverpool", "Manchester_Stadium");
 //        UsersDB instance = UsersDB.getInstance();
 //        //Referee ref = new Referee("naama","naama123", Enums.ActivationStatus.ACTIVE,Enums.UserType.Referee,Enums.RefereeLevel.Primary);
 //        //instance.delete(ref);

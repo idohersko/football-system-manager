@@ -70,7 +70,7 @@ public class TeamsDB implements DB<Team>{
             Statement stat = connection.createStatement();
             ResultSet rs = stat.executeQuery("select * from teams");
             while (rs.next()) {
-                String teamName = rs.getString("name");
+                String teamName = rs.getString("teamName");
                 String league = rs.getString("league");
                 String teamOwner = rs.getString("teamOwner");
 
