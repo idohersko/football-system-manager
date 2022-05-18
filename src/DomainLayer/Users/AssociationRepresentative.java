@@ -23,7 +23,7 @@ public class AssociationRepresentative extends AUser {
         // check if user exists, if no return exception.
         for (String user : all_users) {
             String[] user_splitted = user.split(";");
-            if (user_splitted[0] == userName)
+            if (user_splitted[0].equals(userName))
                 return Enums.ActionStatus.FAIL;
         }
         //else - we create new referee and give him random password for login to system.
@@ -50,9 +50,9 @@ public class AssociationRepresentative extends AUser {
 
         for (String user: all_users) {
             String[] user_splitted = user.split(";");
-            if(user_splitted[0]==RepresentativeName)
+            if(user_splitted[0].equals(RepresentativeName))
             {
-                if(user_splitted[2]==Enums.ActivationStatus.ACTIVE.toString())
+                if(user_splitted[2].equals(Enums.ActivationStatus.ACTIVE.toString()))
                 {
                     return true;
                 }
@@ -99,9 +99,9 @@ public class AssociationRepresentative extends AUser {
 
         for (String user: all_users) {
             String[] user_splitted = user.split(";");
-            if(user_splitted[0]==RepresentativeName)
+            if(user_splitted[0].equals(RepresentativeName))
             {
-                if(user_splitted[2]==Enums.UserType.AssociationRepresentative.toString())
+                if(user_splitted[2].equals(Enums.UserType.AssociationRepresentative.toString()))
                 {
                     return true;
                 }

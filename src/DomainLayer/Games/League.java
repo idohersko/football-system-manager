@@ -29,7 +29,7 @@ public class League {
 
         for (String league: all_leagues) {
             String[] league_split = league.split(";");
-            if(league_split[0]==LeagueName)
+            if(league_split[0].equals(LeagueName))
             {
                     return true;
             }
