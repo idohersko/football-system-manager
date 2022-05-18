@@ -4,7 +4,7 @@ import ServiceLayer.SystemController;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class LoginStstemTest {
+public class LoginSystemTest {
     private SystemController controller;
 
     @Before
