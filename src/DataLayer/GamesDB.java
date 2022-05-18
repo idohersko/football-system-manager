@@ -120,9 +120,6 @@ public class GamesDB implements DB<Game> {
         myStmt.setString(7, events);
         myStmt.setString(8, ref);
         int res = myStmt.executeUpdate();
-        System.out.println(res);
-
-        System.out.println(res + " records inserted");
     }
 
     @Override

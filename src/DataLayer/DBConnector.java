@@ -27,9 +27,6 @@ public class DBConnector {
      */
     public static Connection getConnection() {
         try {
-            //DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-            //return DriverManager.getConnection(URL, USER, PASS);
-//            Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(URL,USER,PASS);
             return conn;
         } catch (SQLException ex) {
@@ -44,7 +41,6 @@ public class DBConnector {
             ResultSet rs = stat.executeQuery("select * from Teams");
             while (rs.next()) {
                 String team_name = rs.getString("name");
-                System.out.println(team_name);
             }
             conn.close();
 

@@ -92,8 +92,6 @@ public class TeamsDB implements DB<Team>{
         myStmt.setString(3, teamTEAMOWNER);
 
         int res = myStmt.executeUpdate();
-
-        System.out.println(res + " records inserted");
     }
 
     @Override
@@ -115,7 +113,6 @@ public class TeamsDB implements DB<Team>{
         myStmt.setString(2, tempoNAME);
 
         int res = myStmt.executeUpdate();
-        System.out.println(res + " records updated");
 
     }
 
@@ -130,7 +127,6 @@ public class TeamsDB implements DB<Team>{
             myStmt.setString(1,tempoNAME);
             int res = myStmt.executeUpdate();
 
-            System.out.println(res + " records deleted");
 
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());

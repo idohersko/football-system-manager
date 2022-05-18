@@ -109,7 +109,6 @@ public class LeaguesDB implements DB<League> {
 
         int res = myStmt.executeUpdate();
 
-        System.out.println(res + " records inserted");
     }
 
     @Override
@@ -131,7 +130,6 @@ public class LeaguesDB implements DB<League> {
         myStmt.setString(2, tempoNAME);
 
         int res = myStmt.executeUpdate();
-        System.out.println(res + " records updated");
 
     }
 
@@ -144,8 +142,6 @@ public class LeaguesDB implements DB<League> {
             PreparedStatement myStmt = connection.prepareStatement(query);
             myStmt.setString(1,tempoNAME);
             int res = myStmt.executeUpdate();
-
-            System.out.println(res + " records deleted");
 
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());

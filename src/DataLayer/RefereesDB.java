@@ -96,7 +96,6 @@ public class RefereesDB implements DB<Referee> {
         myStmt.setString(5, tempoLEVEL);
         int res = myStmt.executeUpdate();
 
-        System.out.println(res + " records inserted");
     }
 
     @Override
@@ -118,7 +117,6 @@ public class RefereesDB implements DB<Referee> {
         myStmt.setString(2, tempoNAME);
 
         int res = myStmt.executeUpdate();
-        System.out.println(res + " records updated");
 
     }
 
@@ -133,7 +131,6 @@ public class RefereesDB implements DB<Referee> {
             myStmt.setString(2,tempoPASS);
             int res = myStmt.executeUpdate();
 
-            System.out.println(res + " records deleted");
 
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());
