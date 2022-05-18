@@ -62,14 +62,17 @@ public class Acceptance_Test {
 
     @org.junit.Test
     public void testCompleteFlow() {
+        //Test No. 25
         // Login with existing userName and password - successful login
         Enums.ActionStatus status = controller.LogInUser("us-dar","dar123");
         assertEquals("failed - this test should have been success", status, Enums.ActionStatus.SUCCESS);
 
+        //Test No. 26
         // sign new referee
         status = controller.SignNewReferee("ref-ref", "ref-ref@tipo.ac.il", Enums.RefereeLevel.Primary);
         assertEquals("Registration failed - should be a successful registration.", status, Enums.ActionStatus.SUCCESS);
 
+        //Test No. 27
         status = controller.SetNewGame("Talya", "England", "01-01-2023",
                 "Manchester", "Liverpool", "Manchester_Stadium");
         assertEquals("Failed - this test should have been success", status, Enums.ActionStatus.SUCCESS);

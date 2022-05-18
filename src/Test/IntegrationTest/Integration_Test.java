@@ -42,6 +42,7 @@ public class Integration_Test {
 
     @org.junit.Test
     public void TestLoginAndAddGame() {
+        //Test No. 23
         // Login with existing userName and password - successful login
 
         Enums.ActionStatus status = controller.LogInUser("Talya","sakov");
@@ -52,6 +53,7 @@ public class Integration_Test {
 
     @org.junit.Test
     public void TestLoginAndRegisterNewReferee() {
+        //Test No. 24
         //Login with existing referee with userName and password and then try to register as new one.
         controller.LogInUser("referee_2","12345_r1");
         Enums.ActionStatus status = controller.SignNewReferee("referee_2", "referee_2@post.ac.il", Enums.RefereeLevel.Primary);
