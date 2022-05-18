@@ -15,6 +15,7 @@ public class RefereeTest {
 
     @Test
     public void testNewRefereeRegistration() {
+
         // happy flow
         Enums.ActionStatus status = controller.SignNewReferee("NaamaBaruch", "naamaBru123@post.ac.il", Enums.RefereeLevel.Secondary);
         assertEquals("Registration failed - should be a successful registration.", status, Enums.ActionStatus.SUCCESS);
