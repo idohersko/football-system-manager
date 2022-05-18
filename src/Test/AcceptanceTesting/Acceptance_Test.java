@@ -15,7 +15,7 @@ import static DomainLayer.Games.Game.getAllGamesFromDB;
 import static DomainLayer.Users.AUser.getAllUsersFromDB;
 import static org.junit.Assert.assertEquals;
 
-public class Test {
+public class Acceptance_Test {
     private SystemController controller;
 
     @Before

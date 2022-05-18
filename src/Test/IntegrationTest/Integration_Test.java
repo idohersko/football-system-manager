@@ -1,6 +1,7 @@
 package Test.IntegrationTest;
 
 import DataLayer.GamesDB;
+import DataLayer.RefereesDB;
 import DataLayer.UsersDB;
 import DomainLayer.Enums;
 import DomainLayer.Games.Game;
@@ -16,7 +17,7 @@ import static DomainLayer.Games.Game.getAllGamesFromDB;
 import static DomainLayer.Users.AUser.getAllUsersFromDB;
 import static org.junit.Assert.assertEquals;
 
-public class Test {
+public class Integration_Test {
     private SystemController controller;
 
     @Before
@@ -52,8 +53,8 @@ public class Test {
     @org.junit.Test
     public void TestLoginAndRegisterNewReferee() {
         //Login with existing referee with userName and password and then try to register as new one.
-        controller.LogInUser("NaamaBaruch","naama1212");
-        Enums.ActionStatus status = controller.SignNewReferee("NaamaBaruch", "naamaBru@post.ac.il", Enums.RefereeLevel.Primary);
+        controller.LogInUser("referee_2","12345_r1");
+        Enums.ActionStatus status = controller.SignNewReferee("referee_2", "referee_2@post.ac.il", Enums.RefereeLevel.Primary);
         assertEquals("failed - the user should be exist already in the system.", status, Enums.ActionStatus.FAIL);
     }
 }
