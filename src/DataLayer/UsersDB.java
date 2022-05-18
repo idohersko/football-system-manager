@@ -57,14 +57,6 @@ public class UsersDB implements DB<AUser> {
             throw new RuntimeException("Error connecting to the database", e);
         }
 
-//        // Close the connection
-//        try {
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        //todo ----- DO WE NEED TO CLOSE THE CONNECTION IN EACH FUNCTION ?
-
     }
 
     @Override
