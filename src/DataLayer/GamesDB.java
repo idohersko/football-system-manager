@@ -120,6 +120,7 @@ public class GamesDB implements DB<Game> {
         myStmt.setString(7, events);
         myStmt.setString(8, ref);
         int res = myStmt.executeUpdate();
+        System.out.println(res);
 
         System.out.println(res + " records inserted");
     }
@@ -149,7 +150,6 @@ public class GamesDB implements DB<Game> {
         myStmt.setString(5, s);
 
         int res = myStmt.executeUpdate();
-        System.out.println(res + " records updated");
 
     }
 
@@ -167,8 +167,6 @@ public class GamesDB implements DB<Game> {
             myStmt.setString(2, tg);
             myStmt.setString(3, dat);
             int res = myStmt.executeUpdate();
-
-            System.out.println(res + " records deleted");
 
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());
