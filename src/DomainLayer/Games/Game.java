@@ -46,6 +46,12 @@ public class Game {
         return Enums.ActionStatus.SUCCESS;
     }
 
+    public static ArrayList<String> getAllGamesFromDB()
+    {
+        GamesDB gamesDB = GamesDB.getInstance();
+        return gamesDB.getAll();
+    }
+
     public String getDate() {
         return date;
     }

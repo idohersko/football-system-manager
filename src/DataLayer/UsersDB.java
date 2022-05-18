@@ -57,14 +57,6 @@ public class UsersDB implements DB<AUser> {
             throw new RuntimeException("Error connecting to the database", e);
         }
 
-//        // Close the connection
-//        try {
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        //todo ----- DO WE NEED TO CLOSE THE CONNECTION IN EACH FUNCTION ?
-
     }
 
     @Override
@@ -104,8 +96,6 @@ public class UsersDB implements DB<AUser> {
         myStmt.setString(3, tempoTYPE);
         myStmt.setString(4, tempoACTIVATION);
         int res = myStmt.executeUpdate();
-
-        System.out.println(res + " records inserted");
     }
 
     //i take pass and username and check if pass is ok if good i update and send SUCCESS , but,  if pass fail or username does not exist return FAIL
@@ -128,8 +118,6 @@ public class UsersDB implements DB<AUser> {
         myStmt.setString(2, tempoNAME);
 
         int res = myStmt.executeUpdate();
-        System.out.println(res + " records updated");
-
     }
 
     @Override
@@ -142,8 +130,6 @@ public class UsersDB implements DB<AUser> {
             myStmt.setString(1,tempoNAME);
             myStmt.setString(2,tempoPASS);
             int res = myStmt.executeUpdate();
-
-            System.out.println(res + " records deleted");
 
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());

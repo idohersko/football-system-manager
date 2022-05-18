@@ -53,14 +53,6 @@ public class TeamsDB implements DB<Team>{
             throw new RuntimeException("Error connecting to the database", e);
         }
 
-//        // Close the connection
-//        try {
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        //todo ----- DO WE NEED TO CLOSE THE CONNECTION IN EACH FUNCTION ?
-
     }
 
     @Override
@@ -70,7 +62,7 @@ public class TeamsDB implements DB<Team>{
             Statement stat = connection.createStatement();
             ResultSet rs = stat.executeQuery("select * from teams");
             while (rs.next()) {
-                String teamName = rs.getString("name");
+                String teamName = rs.getString("teamName");
                 String league = rs.getString("league");
                 String teamOwner = rs.getString("teamOwner");
 
@@ -100,8 +92,6 @@ public class TeamsDB implements DB<Team>{
         myStmt.setString(3, teamTEAMOWNER);
 
         int res = myStmt.executeUpdate();
-
-        System.out.println(res + " records inserted");
     }
 
     @Override
@@ -123,7 +113,6 @@ public class TeamsDB implements DB<Team>{
         myStmt.setString(2, tempoNAME);
 
         int res = myStmt.executeUpdate();
-        System.out.println(res + " records updated");
 
     }
 
@@ -138,7 +127,6 @@ public class TeamsDB implements DB<Team>{
             myStmt.setString(1,tempoNAME);
             int res = myStmt.executeUpdate();
 
-            System.out.println(res + " records deleted");
 
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());
