@@ -20,8 +20,8 @@ public class SystemAdmin extends AUser {
 
         for (String user: all_users) {
             String[] user_splitted = user.split(";");
-            if(user_splitted[2]==Enums.UserType.SystemAdmin.toString()
-                    && user_splitted[3]==Enums.ActivationStatus.ACTIVE.toString())
+            if(user_splitted[2].equals(Enums.UserType.SystemAdmin.toString())
+                    && user_splitted[3].equals(Enums.ActivationStatus.ACTIVE.toString()))
             {
                 return true;
             }

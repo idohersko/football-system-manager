@@ -56,14 +56,6 @@ public class LeaguesDB implements DB<League> {
             throw new RuntimeException("Error connecting to the database", e);
         }
 
-//        // Close the connection
-//        try {
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        //todo ----- DO WE NEED TO CLOSE THE CONNECTION IN EACH FUNCTION ?
-
     }
 
     @Override
@@ -98,14 +90,12 @@ public class LeaguesDB implements DB<League> {
         {
             league_teams += var.getTeamName() + ",";
         }
-        //todo = i dont know how to fucking trim the last character, fuck java !!!!!!!!!!!
 
         String league_association_representative = "";
         for (AssociationRepresentative var : league.associationRepresentatives)
         {
             league_association_representative += var.getName() + ",";
         }
-        //todo = i dont know how to fucking trim the last character, fuck java !!!!!!!!!!!
 
         String league_name = league.LeagueName;
         String league_season = String.join(",", league.seasons); //separates by ','
@@ -119,7 +109,6 @@ public class LeaguesDB implements DB<League> {
 
         int res = myStmt.executeUpdate();
 
-        System.out.println(res + " records inserted");
     }
 
     @Override
@@ -141,7 +130,6 @@ public class LeaguesDB implements DB<League> {
         myStmt.setString(2, tempoNAME);
 
         int res = myStmt.executeUpdate();
-        System.out.println(res + " records updated");
 
     }
 
@@ -154,8 +142,6 @@ public class LeaguesDB implements DB<League> {
             PreparedStatement myStmt = connection.prepareStatement(query);
             myStmt.setString(1,tempoNAME);
             int res = myStmt.executeUpdate();
-
-            System.out.println(res + " records deleted");
 
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());

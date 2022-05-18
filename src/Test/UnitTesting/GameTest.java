@@ -1,11 +1,20 @@
 package Test.UnitTesting;
 
+import DataLayer.GamesDB;
+import DataLayer.UsersDB;
 import DomainLayer.Enums;
+import DomainLayer.Games.Game;
+import DomainLayer.Users.Referee;
 import ServiceLayer.SystemController;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import static DomainLayer.Users.AUser.getAllUsersFromDB;
 
+import java.util.ArrayList;
+
+import static DomainLayer.Games.Game.getAllGamesFromDB;
 import static org.junit.Assert.assertEquals;
 
 public class GameTest {
@@ -13,7 +22,23 @@ public class GameTest {
 
     @Before
     public void initialize(){
+
         controller = SystemController.getInstance();
+        try
+        {
+            GamesDB instance = GamesDB.getInstance();
+
+            ArrayList<String> all_games = getAllGamesFromDB();
+            for (String game : all_games) {
+                String[] game_splitted = game.split(";");
+                if (game_splitted[0].equals("Manchester") && game_splitted[1].equals("Liverpool")
+                        && game_splitted[2].equals("01-01-2023")){
+                    Game game_tmp = new Game("01-01-2023", "Current", "Manchester_Stadium", "Manchester", "Liverpool", null);
+                    instance.delete(game_tmp);
+                }
+            }
+        }
+        catch (Exception ignored){}
     }
 
     @Test

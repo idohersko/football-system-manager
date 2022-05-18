@@ -43,14 +43,14 @@ public class GamesDB implements DB<Game> {
             // Display function to show the Resultset
             String answer = "";
             while (rs.next()) {
-                String th = rs.getString("name");
-                String tg = rs.getString("league");
-                String dat = rs.getString("teamOwner");
-                String s = rs.getString("teamOwner");
-                String fi = rs.getString("teamOwner");
-                String sc = rs.getString("teamOwner");
-                String ev = rs.getString("teamOwner");
-                String ref = rs.getString("teamOwner");
+                String th = rs.getString("teamHome");
+                String tg = rs.getString("teamGuest");
+                String dat = rs.getString("date");
+                String s = rs.getString("season");
+                String fi = rs.getString("field");
+                String sc = rs.getString("score");
+                String ev = rs.getString("events");
+                String ref = rs.getString("referees");
 
                 answer = th + ";" + tg + ";" + dat+ ";" + s + ";" + fi+ ";" + sc + ";" + ev+ ";" + ref;
             }
@@ -61,14 +61,6 @@ public class GamesDB implements DB<Game> {
             throw new RuntimeException("Error connecting to the database", e);
         }
 
-//        // Close the connection
-//        try {
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        //todo ----- DO WE NEED TO CLOSE THE CONNECTION IN EACH FUNCTION ?
-
     }
 
     @Override
@@ -78,14 +70,14 @@ public class GamesDB implements DB<Game> {
             Statement stat = connection.createStatement();
             ResultSet rs = stat.executeQuery("select * from games");
             while (rs.next()) {
-                String th = rs.getString("name");
-                String tg = rs.getString("league");
-                String dat = rs.getString("teamOwner");
-                String s = rs.getString("teamOwner");
-                String fi = rs.getString("teamOwner");
-                String sc = rs.getString("teamOwner");
-                String ev = rs.getString("teamOwner");
-                String ref = rs.getString("teamOwner");
+                String th = rs.getString("teamHome");
+                String tg = rs.getString("teamGuest");
+                String dat = rs.getString("date");
+                String s = rs.getString("season");
+                String fi = rs.getString("field");
+                String sc = rs.getString("score");
+                String ev = rs.getString("events");
+                String ref = rs.getString("referees");
 
                 String answer = th + ";" + tg + ";" + dat+ ";" + s + ";" + fi+ ";" + sc + ";" + ev+ ";" + ref;
                 result.add(answer);
@@ -107,9 +99,6 @@ public class GamesDB implements DB<Game> {
         {
             events += var.toString() + ",";
         }
-        //todo = i dont know how to fucking trim the last character, fuck java !!!!!!!!!!!
-
-
 
         String th = gm.team_home;
         String tg = gm.team_guest;
@@ -120,7 +109,7 @@ public class GamesDB implements DB<Game> {
 
         String ref = String.join( ",",gm.referees); //separate by ","
 
-        String query = "insert into users values (?,?,?,?,?,?,?,?)";
+        String query = "insert into games values (?,?,?,?,?,?,?,?)";
         PreparedStatement myStmt = connection.prepareStatement(query);
         myStmt.setString(1, th);
         myStmt.setString(2, tg);
@@ -131,8 +120,6 @@ public class GamesDB implements DB<Game> {
         myStmt.setString(7, events);
         myStmt.setString(8, ref);
         int res = myStmt.executeUpdate();
-
-        System.out.println(res + " records inserted");
     }
 
     @Override
@@ -160,7 +147,6 @@ public class GamesDB implements DB<Game> {
         myStmt.setString(5, s);
 
         int res = myStmt.executeUpdate();
-        System.out.println(res + " records updated");
 
     }
 
@@ -172,15 +158,12 @@ public class GamesDB implements DB<Game> {
             String dat = gm.date;
             String s = gm.season;
 
-            String query = "DELETE FROM games WHERE teamHome = ? and teamGuest = ? and date = ? and season = ?";
+            String query = "DELETE FROM games WHERE teamHome = ? and teamGuest = ? and date = ?";
             PreparedStatement myStmt = connection.prepareStatement(query);
             myStmt.setString(1, th);
             myStmt.setString(2, tg);
             myStmt.setString(3, dat);
-            myStmt.setString(4, s);
             int res = myStmt.executeUpdate();
-
-            System.out.println(res + " records deleted");
 
         } catch (java.sql.SQLException e) {
             System.out.println(e.toString());

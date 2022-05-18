@@ -69,7 +69,7 @@ public class SystemController {
         }
 
         String refereeUserName = Referee.FindAvailableReferee();
-        if(refereeUserName == "")
+        if(refereeUserName.equals(""))
         {
             return Enums.ActionStatus.FAIL;
         }

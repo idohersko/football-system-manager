@@ -33,9 +33,9 @@ public abstract class AUser {
         // check if user exists, if yes 0 verify it's password
         for (String user: all_users) {
             String[] user_splitted = user.split(";");
-            if(user_splitted[0]==userName)
+            if(user_splitted[0].equals(userName))
             {
-                if(user_splitted[1]!=password)
+                if(!user_splitted[1].equals(password))
                 {
                     return Enums.ActionStatus.FAIL;
                 }
