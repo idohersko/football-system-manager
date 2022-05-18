@@ -2,6 +2,7 @@ package Test.UnitTesting;
 
 import DomainLayer.Enums;
 import ServiceLayer.SystemController;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,12 @@ public class GameTest {
 
     @Before
     public void initialize(){
+
+        controller = SystemController.getInstance();
+    }
+
+    @After
+    public void deleteNewGame(){
         controller = SystemController.getInstance();
     }
 
