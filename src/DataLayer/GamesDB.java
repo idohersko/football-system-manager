@@ -43,7 +43,7 @@ public class GamesDB implements DB<Game> {
             // Display function to show the Resultset
             String answer = "";
             while (rs.next()) {
-                String th = rs.getString("teamName");
+                String th = rs.getString("teamHome");
                 String tg = rs.getString("teamGuest");
                 String dat = rs.getString("date");
                 String s = rs.getString("season");
@@ -78,7 +78,7 @@ public class GamesDB implements DB<Game> {
             Statement stat = connection.createStatement();
             ResultSet rs = stat.executeQuery("select * from games");
             while (rs.next()) {
-                String th = rs.getString("teamName");
+                String th = rs.getString("teamHome");
                 String tg = rs.getString("teamGuest");
                 String dat = rs.getString("date");
                 String s = rs.getString("season");
@@ -169,12 +169,11 @@ public class GamesDB implements DB<Game> {
             String dat = gm.date;
             String s = gm.season;
 
-            String query = "DELETE FROM games WHERE teamHome = ? and teamGuest = ? and date = ? and season = ?";
+            String query = "DELETE FROM games WHERE teamHome = ? and teamGuest = ? and date = ?";
             PreparedStatement myStmt = connection.prepareStatement(query);
             myStmt.setString(1, th);
             myStmt.setString(2, tg);
             myStmt.setString(3, dat);
-            myStmt.setString(4, s);
             int res = myStmt.executeUpdate();
 
             System.out.println(res + " records deleted");

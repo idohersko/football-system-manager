@@ -16,8 +16,11 @@ public class RefereeTest {
 
     @Before
     public void initialize(){
-
         controller = SystemController.getInstance();
+    }
+
+    @After
+    public void deleteNewUser(){
         try
         {
             UsersDB instance = UsersDB.getInstance();

@@ -52,7 +52,7 @@ public class AssociationRepresentative extends AUser {
             String[] user_splitted = user.split(";");
             if(user_splitted[0].equals(RepresentativeName))
             {
-                if(user_splitted[3].equals(Enums.ActivationStatus.ACTIVE.toString()))
+                if(user_splitted[3].equals("ACTIVE"))
                 {
                     return true;
                 }
