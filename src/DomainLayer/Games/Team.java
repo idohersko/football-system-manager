@@ -32,9 +32,9 @@ public class Team {
 
         for (String team: all_teams) {
             String[] team_split = team.split(";");
-            if(team_split[0]==teamName)
+            if(team_split[0].equals(teamName))
             {
-                if(team_split[1]==leagueName)
+                if(team_split[1].equals(leagueName))
                 {
                     return true;
                 }
