@@ -15,7 +15,6 @@ public class DBConnector {
      * @return instance of DBconector
      * private constructor to avoid client applications to use constructor
      */
-
     public static DBConnector getInstance(){
         return instance;
     }
