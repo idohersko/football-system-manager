@@ -29,6 +29,16 @@ public class Game {
 
     // ------------------------- DB interaction methods -------------------------
 
+    /**
+     * @param date date
+     * @param season season
+     * @param field field
+     * @param team_home team home
+     * @param team_guest team guest
+     * @param referees referess
+     * @return enums - success or fail
+     * this function add a new game to the DB by "talking" to the datalayer
+     */
     public static Enums.ActionStatus AddNewGameToDB(String date, String season, String field, String team_home, String team_guest, ArrayList<String> referees)
     {
         // add the end of this func - we have new game in games DB
@@ -46,6 +56,10 @@ public class Game {
         return Enums.ActionStatus.SUCCESS;
     }
 
+    /**
+     * @return enums - success or fail
+     * this function add a new game to the DB by "talking" to the datalayer
+     */
     public static ArrayList<String> getAllGamesFromDB()
     {
         GamesDB gamesDB = GamesDB.getInstance();

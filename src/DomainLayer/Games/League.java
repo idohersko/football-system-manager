@@ -22,6 +22,11 @@ public class League {
         return leaguesDB.getAll();
     }
 
+    /**
+     * @param LeagueName tring of the name of the league
+     * @return enums - success or fail
+     * this function check if the league exist in the dB by talkinf=g to the data layer
+     */
     public static boolean CheckLeagueExists(String LeagueName)
     {
         // check that the League exists

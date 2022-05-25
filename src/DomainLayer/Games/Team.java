@@ -19,12 +19,21 @@ public class Team {
         this.league = league;
     }
 
+    /**
+     * @return all the temas from the db by talking to the data layer
+     */
     public static ArrayList<String> getAllTeamFromDB()
     {
         TeamsDB teamsDB = TeamsDB.getInstance();
         return teamsDB.getAll();
     }
 
+    /**
+     * @param teamName tean name
+     * @param leagueName league name i want to check in
+     * @return enums - success or fail
+     * this func check if a team exist in a give league
+     */
     public static boolean CheckTeamExistsWithTheLeague(String teamName, String leagueName)
     {
         // check that the team exists and have this league

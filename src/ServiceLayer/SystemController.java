@@ -7,10 +7,18 @@ import DomainLayer.Users.*;
 import java.util.ArrayList;
 
 public class SystemController {
+    //singelton
     private static SystemController systemControllerInstance;
 
+    /**
+     * private construcor, we wish that no one would use it, instead, we implement a singleton with a getinstance function
+     */
     private SystemController() {
     }
+
+    /**
+     * @return get an instance of the controller
+     */
     public static SystemController getInstance() {
         if (systemControllerInstance == null){
             systemControllerInstance = new SystemController();
@@ -19,6 +27,12 @@ public class SystemController {
     }
 
 
+    /**
+     * @param userName sting, username of user who wish to log in
+     * @param password sting, password of user who wish to log in
+     * @return enums - success or fail
+     * this func log in a given user by giving his credentials
+     */
     public Enums.ActionStatus LogInUser(String userName, String password){
         if(userName == null || password == null)
         {
@@ -27,6 +41,16 @@ public class SystemController {
         return AUser.LogInUserToDB(userName, password);
     }
 
+    /**
+     * @param AssociationRepresentativeUserName string
+     * @param LeagueName string
+     * @param date string
+     * @param teamHomeName string
+     * @param teamGuestName string
+     * @param field string
+     * @return enums - success or fail
+     * this function set a new game and checks if allthe credentials are good
+     */
     public Enums.ActionStatus SetNewGame(String AssociationRepresentativeUserName, String LeagueName, String date,
                                          String teamHomeName, String teamGuestName, String field)
     {
@@ -79,6 +103,13 @@ public class SystemController {
     }
 
 
+    /**
+     * @param name string
+     * @param email string
+     * @param levelReferee enums - primary or secondary
+     * @return enums - success or fail
+     * this function sign a new referee in the system
+     */
     public Enums.ActionStatus SignNewReferee(String name, String email, Enums.RefereeLevel levelReferee){
         if (name == null || email == null)
             return  Enums.ActionStatus.WRONG_PARAMETERS;
@@ -89,6 +120,10 @@ public class SystemController {
         return AssociationRepresentative.NewRefereeRegistrationToDB(name, email,levelReferee);
     }
 
+    /**
+     * @return boolean - true or false
+     * this function verify if there is a system admin
+     */
     public boolean VerifySystemAdmin()
     {
         return SystemAdmin.VerifySystemAdmin();
