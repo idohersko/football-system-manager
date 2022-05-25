@@ -15,7 +15,9 @@ public class UsersDB implements DB<AUser> {
     private static final UsersDB instance = new UsersDB();
     private Connection connection;
 
-    //private constructor to avoid client applications to use constructor
+    /**
+     * private constructor to avoid client applications to use constructor
+     */
     public static UsersDB getInstance(){
         return instance;
     }
@@ -25,6 +27,10 @@ public class UsersDB implements DB<AUser> {
         this.connection = DBConnector.getConnection();
     }
 
+    /**
+     * @param name string of a user that i wish to retrieve from the DB
+     * @return a string of the user, its parameters are delimited by ;
+     */
     @Override
     public String get(String name) {
 
@@ -59,6 +65,9 @@ public class UsersDB implements DB<AUser> {
 
     }
 
+    /**
+     * @return an array of strings, the delimeter is ; between each user
+     */
     @Override
     public ArrayList<String> getAll() {
         ArrayList<String> result = new ArrayList<String>();
@@ -82,6 +91,10 @@ public class UsersDB implements DB<AUser> {
 
     }
 
+    /**
+     * @param user a user i wish to save in DB
+     * @throws SQLException error with the connection of the DB
+     */
     @Override
     public void save(AUser user) throws SQLException {
 
@@ -98,9 +111,14 @@ public class UsersDB implements DB<AUser> {
         int res = myStmt.executeUpdate();
     }
 
-    //i take pass and username and check if pass is ok if good i update and send SUCCESS , but,  if pass fail or username does not exist return FAIL
+    /**
+     * @param user a user i wish to update
+     * @param params array of strings
+     * @throws SQLException error in connection with DB
+     * i take pass and username and check if pass is ok if good i update and send SUCCESS , but,  if pass fail or username does not exist return FAIL
+     * this function update a user from inactive to active
+     */
     @Override
-    //this function update a user from inactive to active
     public void update(AUser user, String[] params) throws SQLException {
 
         //AUser user details
@@ -120,6 +138,9 @@ public class UsersDB implements DB<AUser> {
         int res = myStmt.executeUpdate();
     }
 
+    /**
+     * @param user a user i wish to delete
+     */
     @Override
     public void delete(AUser user) {
         try {

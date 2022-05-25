@@ -17,10 +17,17 @@ public class TeamsDB implements DB<Team>{
         return instance;
     }
 
-    //private constructor
+    /**
+     * private constructor to avoid client applications to use constructor
+     */
     private TeamsDB() {
         this.connection = DBConnector.getConnection();
     }
+
+    /**
+     * @param name string of a team that i wish to retrieve from the DB
+     * @return a string of the team, its parameters are delimited by ;
+     */
     @Override
     public String get(String name) {
 
@@ -55,6 +62,9 @@ public class TeamsDB implements DB<Team>{
 
     }
 
+    /**
+     * @return an array of strings, the delimeter is ; between each league
+     */
     @Override
     public ArrayList<String> getAll() {
         ArrayList<String> result = new ArrayList<String>();
@@ -78,6 +88,10 @@ public class TeamsDB implements DB<Team>{
 
     }
 
+    /**
+     * @param team save the team in the DB
+     * @throws SQLException exception if something wrong happends during the connection
+     */
     @Override
     public void save(Team team) throws SQLException {
 
@@ -94,8 +108,13 @@ public class TeamsDB implements DB<Team>{
         int res = myStmt.executeUpdate();
     }
 
+    /**
+     * @param team a team i wish to update
+     * @param params array of string
+     * @throws SQLException error with the connection
+     * this function update a team's league (PARAMS[0]) from one league to another.
+     */
     @Override
-    //this function update a team's league (PARAMS[0]) from one league to another.
     public void update(Team team, String[] params) throws SQLException {
 
         //AUser user details
@@ -116,6 +135,9 @@ public class TeamsDB implements DB<Team>{
 
     }
 
+    /**
+     * @param t a team i wish to delete
+     */
     @Override
     public void delete(Team t) {
 

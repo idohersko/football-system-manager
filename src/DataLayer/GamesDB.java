@@ -20,7 +20,9 @@ public class GamesDB implements DB<Game> {
         return instance;
     }
 
-    //private constructor
+    /**
+     * private constructor to avoid client applications to use constructor
+     */
     private GamesDB() {
         this.connection = DBConnector.getConnection();
     }
@@ -63,6 +65,9 @@ public class GamesDB implements DB<Game> {
 
     }
 
+    /**
+     * @return an array of strings of all the games fivides by a ; delimeter
+     */
     @Override
     public ArrayList<String> getAll() {
         ArrayList<String> result = new ArrayList<String>();
@@ -91,6 +96,10 @@ public class GamesDB implements DB<Game> {
 
     }
 
+    /**
+     * @param gm game
+     * @throws SQLException return an exception if the DB didnt connect well
+     */
     @Override
     public void save(Game gm) throws SQLException {
 
@@ -122,8 +131,12 @@ public class GamesDB implements DB<Game> {
         int res = myStmt.executeUpdate();
     }
 
+    /**
+     * @param gm game
+     * @param params an array of strings, update the score of the game at PARAMS[0]
+     * @throws SQLException  return an exception if the DB didnt connect well
+     */
     @Override
-    //update the score of the game at PARAMS[0]
     public void update(Game gm, String[] params) throws SQLException {
 
         //AUser user details

@@ -11,8 +11,11 @@ public class DBConnector {
     public static final String PASS = "root";
 
 
+    /**
+     * @return instance of DBconector
+     * private constructor to avoid client applications to use constructor
+     */
 
-    //private constructor to avoid client applications to use constructor
     public static DBConnector getInstance(){
         return instance;
     }
@@ -34,8 +37,13 @@ public class DBConnector {
         }
     }
 
-    // test connection
-    private static void testConnection( Connection conn){
+    /**
+     * @param conn connection
+     * @return boolean if success
+     * test connection to the database
+     */
+
+    private static boolean testConnection( Connection conn){
         try {
             Statement stat = conn.createStatement();
             ResultSet rs = stat.executeQuery("select * from Teams");
@@ -45,8 +53,11 @@ public class DBConnector {
             conn.close();
 
         } catch (SQLException ex) {
-            throw new RuntimeException("Error connecting to the database", ex);
+            return false;
         }
+
+
+        return true;
     }
 
 

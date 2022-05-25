@@ -16,10 +16,17 @@ public class RefereesDB implements DB<Referee> {
         return instance;
     }
 
-    //private constructor
+    /**
+     * private constructor to avoid client applications to use constructor
+     */
     private RefereesDB() {
         this.connection = DBConnector.getConnection();
     }
+
+    /**
+     * @param name string of referee's name
+     * @return a string of the referee with ; as parameter delimeter
+     */
     @Override
     public String get(String name) {
 
@@ -55,6 +62,9 @@ public class RefereesDB implements DB<Referee> {
 
     }
 
+    /**
+     * @return all the referees  with the ; delimeter
+     */
     @Override
     public ArrayList<String> getAll() {
         ArrayList<String> result = new ArrayList<String>();
@@ -79,6 +89,10 @@ public class RefereesDB implements DB<Referee> {
 
     }
 
+    /**
+     * @param referee a referee i wish to save in the DB
+     * @throws SQLException excpetion  with the connection
+     */
     @Override
     public void save(Referee referee) throws SQLException {
 
@@ -98,8 +112,14 @@ public class RefereesDB implements DB<Referee> {
 
     }
 
+    /**
+     * @param referee a referee i want to change from inactive to active
+     * @param params array of strings, unused here in the function
+     * @throws SQLException
+     * this function update a referee from inactive to active
+     */
     @Override
-    //this function update a referee from inactive to active
+
     public void update(Referee referee, String[] params) throws SQLException {
 
         //AUser user details
@@ -120,6 +140,9 @@ public class RefereesDB implements DB<Referee> {
 
     }
 
+    /**
+     * @param referee a referee i wish to delete from DB
+     */
     @Override
     public void delete(Referee referee) {
         try {

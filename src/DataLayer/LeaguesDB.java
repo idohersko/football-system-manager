@@ -19,10 +19,17 @@ public class LeaguesDB implements DB<League> {
         return instance;
     }
 
-    //private constructor
+    /**
+     * private constructor to avoid client applications to use constructor
+     */
     private LeaguesDB() {
         this.connection = DBConnector.getConnection();
     }
+
+    /**
+     * @param name get the league by its name fron the DB
+     * @return the league with ; delimeter
+     */
     @Override
     public String get(String name) {
 
@@ -58,6 +65,9 @@ public class LeaguesDB implements DB<League> {
 
     }
 
+    /**
+     * @return an array of strings, the delimeter is ; between each league
+     */
     @Override
     public ArrayList<String> getAll() {
         ArrayList<String> result = new ArrayList<String>();
@@ -82,6 +92,10 @@ public class LeaguesDB implements DB<League> {
 
     }
 
+    /**
+     * @param league save the league in the DB
+     * @throws SQLException exception if something wrong happends during the connection
+     */
     @Override
     public void save(League league) throws SQLException {
 
@@ -111,8 +125,13 @@ public class LeaguesDB implements DB<League> {
 
     }
 
+    /**
+     * @param league league to update
+     * @param params array of strings
+     * @throws SQLException exception if csmth wrong in the connection
+     * this function update a team's league (PARAMS[0]) from one league to another.
+     */
     @Override
-    //this function update a team's league (PARAMS[0]) from one league to another.
     public void update(League league, String[] params) throws SQLException {
 
         //AUser user details
@@ -133,6 +152,9 @@ public class LeaguesDB implements DB<League> {
 
     }
 
+    /**
+     * @param league league to delete
+     */
     @Override
     public void delete(League league) {
         try {
